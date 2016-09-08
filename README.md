@@ -1,3 +1,4 @@
 # Team Aurora
- 
-Kushal Sheth
+
+Team Members: 
+Kushal Sheth (kmsheth)
