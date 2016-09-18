@@ -1,5 +1,12 @@
 language: java
 sudo: required
+language: java
+jdk:
+    - oraclejdk8
+install: mvn clean install -P-quality-checks -DskipTests
+script:
+    - mvn install
+after_script: mvn site site:deploy
 deploy:
 	provider: s3
     access_key_id: $AWS_ACCESS_KEY_ID
@@ -13,3 +20,4 @@ notifications:
 	email:
 		recipients:
 			- kushalsheth93@gmail.com
+			
