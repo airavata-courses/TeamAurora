@@ -30,7 +30,7 @@ def stormDetector(yy=None, mm=None, dd=None, stationId=None, filename=None):
 
 if __name__ == '__main__':
     app.run(
-        host="0.0.0.0",
-        #port=int(5000),
+        host="127.0.0.1",
+        port=int(5000),
         #debug=True
     )
