@@ -4,4 +4,4 @@ script mvn clean verify
 # safelist
 branches:
   only:
-  - ForecastTrigger
+  - Feature-ForecastTrigger
