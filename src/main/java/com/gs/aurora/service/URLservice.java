@@ -19,7 +19,7 @@ import com.gs.aurora.postgresql.*;
 
 
 
-@Path("urlgen")
+@Path("urlgenold")
 // @Consumes(MediaType.APPLICATION_JSON)
 public class URLservice {
 
