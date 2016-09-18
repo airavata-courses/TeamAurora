@@ -7,4 +7,9 @@ deploy:
     bucket: "teamaurora"
     region: us-west-2
     skip_cleanup: true
-	local_dir: build
+	local_dir: build/libs
+	upload-dir: builds/java
+notifications:
+	email:
+		recipients:
+			- kushalsheth93@gmail.com
