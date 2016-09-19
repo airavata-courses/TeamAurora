@@ -1,22 +1,10 @@
 language: java
 sudo: required
-jdk:
-    - oraclejdk8
-install: mvn clean install -P-quality-checks -DskipTests
-script:
-    - mvn install
-after_script: mvn site site:deploy
 deploy:
 	provider: s3
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: "teamaurora"
     region: us-west-2
-    skip_cleanup: true
-	local_dir: build/libs
+    local_dir: build/libs
 	upload-dir: builds/java
-notifications:
-	email:
-		recipients:
-			- kushalsheth93@gmail.com
-			

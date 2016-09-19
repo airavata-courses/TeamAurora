@@ -32,9 +32,11 @@ public class ForecastDetect {
 	public Response results(boolean storm) {
 		System.out.println("Deciding on Storm");
 		if(storm){
+			System.out.println("{results:['YES']}");
 			return Response.status(200).entity("{results:['YES']}").build();
 		}
 		else
+			System.out.println("{results:['NO']}");
 			return Response.status(200).entity("{results:['NO']}").build();
 	}
 }
