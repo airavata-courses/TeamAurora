@@ -2,9 +2,9 @@ language: java
 sudo: required
 jdk:
     - oraclejdk8
-install: mvn clean install -P-quality-checks -DskipTests
+#install: mvn clean install
 script:
-    - mvn install
+    - mvn clean install
 after_script: mvn site site:deploy
 deploy:
     provider: s3
