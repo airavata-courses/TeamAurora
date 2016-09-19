@@ -10,3 +10,6 @@ deploy:
     upload-dir: builds/java
     on:
         tags: true
+    branches:
+        only:
+            - Feature-ForecastTrigger
