@@ -9,7 +9,7 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: "teamaurora"
     region: us-west-2
-    local_dir: build/libs
+    local_dir: target
     upload-dir: builds/java
     on:
         tags: true
