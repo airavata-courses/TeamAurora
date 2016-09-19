@@ -9,5 +9,5 @@ deploy:
     local_dir: build/libs
     upload-dir: builds/java
 branches:
-	only:
-		- Feature-ForeCastTrigger
+    only:
+        - Feature-ForeCastTrigger
