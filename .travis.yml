@@ -1,5 +1,8 @@
 language: java
 sudo: required
+branches:
+    only:
+        - Feature-ForecastTrigger
 deploy:
     provider: s3
     access_key_id: $AWS_ACCESS_KEY_ID
@@ -10,6 +13,3 @@ deploy:
     upload-dir: builds/java
     on:
         tags: true
-    branches:
-        only:
-            - Feature-ForecastTrigger
