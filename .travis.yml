@@ -1,28 +1,10 @@
 language: java
 sudo: required
-<<<<<<< HEAD
 deploy:
-	provider: s3
+    provider: s3
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: "teamaurora"
     region: us-west-2
     local_dir: build/libs
-	upload-dir: builds/java
-=======
-#jdk:
-#    - oraclejdk8
-#install: mvn clean install
-#script:
-#    - mvn clean install
-#after_script: mvn site site:deploy
-#deploy:
-#    provider: s3
-#    access_key_id: $AWS_ACCESS_KEY_ID
-#    secret_access_key: $AWS_SECRET_ACCESS_KEY
-#    bucket: "teamaurora"
-#    region: "us-west-2"
-#    skip_cleanup: true
-#    local_dir: build/libs
-#    upload-dir: builds/java
->>>>>>> origin/Feature-ForecastTrigger
+    upload-dir: builds/java
