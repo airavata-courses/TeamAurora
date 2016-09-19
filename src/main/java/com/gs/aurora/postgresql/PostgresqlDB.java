@@ -4,15 +4,17 @@ package com.gs.aurora.postgresql;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 
 
 public class PostgresqlDB {
 
 	
 	
-	public void connectionToDB() throws SQLException
+	public void loggingToDB(String user_id, String station_code,Date date, String time ) throws SQLException
 	{
 		Statement stmt = null;
 
@@ -60,10 +62,29 @@ public class PostgresqlDB {
 				//STEP 4: Execute a query
 			    System.out.println("Creating statement...");
 			    stmt = connection.createStatement();
-			    String sql;
+			    String insertSql;
 			    
 			    
-			      sql = "SELECT * FROM login_master";
+				 //sql="INSERT INTO dataingestor_logging VALUES('"+user_id+"', '"+station_code+"', '"+date+"', '"+time+"');";
+				 
+				 
+				 insertSql="INSERT INTO dataingestor_logging"
+						 + "(user_id, station_code, date, time_by_user) VALUES"
+						 + "(?,?,?,?)";
+						 
+			    
+				 PreparedStatement preparedStatement = connection.prepareStatement(insertSql);
+				 preparedStatement.setInt(1, Integer.parseInt(user_id));
+				 preparedStatement.setString(2, station_code);
+				 preparedStatement.setDate(3, date);
+				 preparedStatement.setString(4, time);
+				 //preparedStatement.setTimestamp(5, getCurrentTimeStamp());
+				 // execute insert SQL stetement
+				 preparedStatement .executeUpdate();
+				 System.out.println("Record is inserted into DBUSER table!");
+			    
+			    /*
+			    sql = "SELECT * FROM login_master";
 			    ResultSet rs = stmt.executeQuery(sql);
 
 			    //STEP 5: Extract data from result set
@@ -81,7 +102,7 @@ public class PostgresqlDB {
 			       System.out.println(", Last login: " + last_login);
 			       System.out.println("------------------");
 			       
-			    }
+			    }*/
 			       /*
 
 			    
@@ -106,7 +127,7 @@ public class PostgresqlDB {
 			    
 			    
 			    //STEP 6: Clean-up environment
-			    rs.close();
+			    //rs.close();
 			    stmt.close();
 			    connection.close();
 				

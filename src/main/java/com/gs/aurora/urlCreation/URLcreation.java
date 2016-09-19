@@ -38,10 +38,10 @@ public class URLcreation {
 	// public String getURL(@Context UriInfo uriInfo, @BeanParam
 	// UrlrGeneratorBean urlBeam)
 	@POST
-	@Produces(MediaType.APPLICATION_JSON)
-	//@Produces(MediaType.TEXT_PLAIN)
+	//@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public URLdata getURL(@Context UriInfo uriInfo, @FormParam("datetimepickername") String dateTime,
+	public String getURL(@Context UriInfo uriInfo, @FormParam("datetimepickername") String dateTime,
 			@FormParam("nexrad_station") String station) throws ParseException, SQLException {
 		
 		
@@ -53,14 +53,17 @@ public class URLcreation {
 		String dateVar=dateTimesplit[0];
 		String time=dateTimesplit[1];
 		
-		//postDB.connectionToDB();
+		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+		postDB.loggingToDB("12","statio_codde",sqlDate,"time");
 		System.out.println(dateTime);
+		
+		
 		
 		URLdata url=new URLdata();
 		
 		String path = uriInfo.getBaseUriBuilder().path(dateTime).path(station).build().toString();
 		URLdata urldata=new URLdata(path,dateVar,time);
-		return urldata;
+		return path;
 
 		
 		/*

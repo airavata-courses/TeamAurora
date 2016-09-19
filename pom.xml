@@ -3,8 +3,8 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.vkaushal.RestWS</groupId>
-    <artifactId>ger</artifactId>
+    <groupId>com.gs.aurora</groupId>
+    <artifactId>dataingestor</artifactId>
     <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <name>ger</name>

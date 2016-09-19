@@ -42,7 +42,7 @@ public class URLservice {
 		PostgresqlDB postDB = new PostgresqlDB();
 		Date date = new Date();
 
-		postDB.connectionToDB();
+		//postDB.connectionToDB();
 
 		String path = uriInfo.getBaseUriBuilder().path(username).path(password).build().toString();
 		return path;
