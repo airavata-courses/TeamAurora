@@ -10,4 +10,6 @@ deploy:
     upload-dir: builds/java
 branches:
     only:
+        - master
+        - Development
         - Feature-ForeCastTrigger
