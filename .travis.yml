@@ -8,3 +8,6 @@ deploy:
     region: us-west-2
     local_dir: build/libs
     upload-dir: builds/java
+branches:
+	only:
+		- Feature-ForeCastTrigger
