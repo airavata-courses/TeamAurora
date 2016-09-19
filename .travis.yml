@@ -3,9 +3,9 @@ sudo: required
 jdk:
     - oraclejdk8
 #install: mvn clean install
-script:
-    - mvn clean install
-after_script: mvn site site:deploy
+#script:
+#    - mvn clean install
+#after_script: mvn site site:deploy
 deploy:
     provider: s3
     access_key_id: $AWS_ACCESS_KEY_ID
