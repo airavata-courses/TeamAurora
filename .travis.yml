@@ -9,7 +9,6 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: "teamaurora"
     skip_cleanup: true
-    region: us-west-2
     local_dir: target
     upload-dir: builds
     on:
