@@ -10,7 +10,7 @@ deploy:
     bucket: "teamaurora"
     skip_cleanup: true
     region: us-west-2
-    local_dir: target/ger.war
+    local_dir: target
     upload-dir: builds/java
     on:
         branch: Feature-ForecastTrigger
