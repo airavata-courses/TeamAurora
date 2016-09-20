@@ -11,6 +11,6 @@ deploy:
     skip_cleanup: true
     region: us-west-2
     local_dir: target
-    upload-dir: builds/java
+    upload-dir: builds
     on:
         branch: Feature-ForecastTrigger
