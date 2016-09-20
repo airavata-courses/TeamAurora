@@ -9,8 +9,8 @@ deploy:
   secret_access_key: $AWS_SECRET_ACCESS_KEY
   bucket: "teamaurora"
   skip_cleanup: true
-  local_dir: build/libs
-  upload-dir: target
+  local_dir: target
+  upload-dir: build/libs
   on:
     branch: Feature-DataIngestor
     
