@@ -1,8 +1,19 @@
 language: python
-sudo: required
+cache:
+  directories:
+  - "$HOME/.cache/pip"
+  - "$HOME/.pyenv"
+sudo: false
 python:
   - "3.4"
-install: "pip install -r requirements.txt"
+branches:
+  only:
+    -feature-StormDetector  
+before_script:
+  - pip install virtualenv
+  - virtualenv env
+  - . env/bin/activate
+install: "pip install --user -r requirements.txt"
 script: python stormDetector.py
 deploy:
     provider: s3
