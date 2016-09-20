@@ -1,8 +1,5 @@
 language: python
-cache:
-  directories:
-  - "$HOME/.cache/pip"
-  - "$HOME/.pyenv"
+
 sudo: false
 python:
   - "3.4"
