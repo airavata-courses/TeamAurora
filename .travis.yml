@@ -1,2 +1,12 @@
-language: Java
-sudo: required
+language: java
+jdk: oraclejdk8
+
+branches:
+  only:
+    - Feature-DataIngestor
+
+script: mvn clean
+
+notifications:
+  email:
+    - psanghvi@iu.edu
