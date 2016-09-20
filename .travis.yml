@@ -13,4 +13,4 @@ deploy:
     local_dir: target/ger.war
     upload-dir: builds/java
     on:
-        branch: Feature-DataIngestor
+        branch: Feature-ForecastTrigger
