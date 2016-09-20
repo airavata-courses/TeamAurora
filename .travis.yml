@@ -17,6 +17,7 @@ before_script:
 
 install: "pip install --user -r requirements.txt"
 
+
 script: nosetests stormDetector.py
 
 deploy:
