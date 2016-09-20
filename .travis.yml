@@ -1,5 +1,4 @@
 language: python
-<<<<<<< HEAD
 cache:
   directories:
   - "$HOME/.cache/pip"
@@ -14,13 +13,9 @@ before_script:
   - pip install virtualenv
   - virtualenv env
   - . env/bin/activate
-install: "pip install --user -r requirements.txt"
-=======
-python:
-  - "3.4"
-install: "pip install -r requirements.txt"
 
->>>>>>> origin/feature-StormDetector
+install: "pip install --user -r requirements.txt"
+
 script: python stormDetector.py
 
 deploy:
