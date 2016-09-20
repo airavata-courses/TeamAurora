@@ -5,7 +5,7 @@ branches:
   only:
     - Feature-DataIngestor
 
-script: mvn clean
+script: mvn clean install
 
 notifications:
   email:
