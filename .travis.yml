@@ -17,3 +17,4 @@ deploy:
 notifications:
   email:
     - psanghvi@iu.edu
+    - vkaushal@iu.edu
