@@ -3,9 +3,8 @@ language: python
 sudo: false
 python:
   - "3.4"
-branches:
-  only:
-    -feature-StormDetector  
+
+ 
 before_script:
   - pip install virtualenv
   - virtualenv env
@@ -13,7 +12,6 @@ before_script:
   - pip install nose
 
 install: "pip install -r requirements.txt"
-
 
 
 script: nosetests stormDetector.py
