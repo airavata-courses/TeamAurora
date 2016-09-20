@@ -12,7 +12,7 @@ branches:
 before_script:
   - pip install virtualenv
   - virtualenv env
-  - . env/bin/activate
+  - .env/bin/activate
 
 install: "pip install --user -r requirements.txt"
 
