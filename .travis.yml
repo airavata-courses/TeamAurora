@@ -1,7 +1,9 @@
 language: java
 jdk: oraclejdk8
 
-branches: master
+branches:
+  only:
+    - Feature-DataIngestor
 
 script: mvn clean install
 
@@ -17,3 +19,6 @@ deploy:
 notifications:
   email:
     - psanghvi@iu.edu
+
+on:
+    tags: true
