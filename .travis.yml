@@ -45,7 +45,12 @@ deploy:
     deployment_group: TeamAurora
     region: us-west-2
     on:
-      branch: feature-StormDetector
+      branch: feature-
+      
+
+after_deploy:
+  - echo "Performing after deploy procedures..."
+  
 notifications:
   email:
     - sriksrin@iu.edu
