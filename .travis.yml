@@ -7,7 +7,6 @@ branches:
   only:
     - feature-StormDetector
 
-
 sudo: false
 
 install: true
@@ -20,7 +19,7 @@ before_script:
   - pip install nose
   - pip install BeautifulSoup4
   - pip install Flask-SQLAlchemy
-  - pip install -r StormDetector/requirements.txt
+  - pip install -r requirements.txt
 
 script: nosetests
 
