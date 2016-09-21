@@ -45,7 +45,7 @@ deploy:
     deployment_group: TeamAurora
     region: us-west-2
     on:
-      branch: feature-
+      branch: feature-StormDetector
       
 
 after_deploy:
