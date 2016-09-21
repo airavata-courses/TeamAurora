@@ -20,7 +20,11 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: "teamaurora"
     skip_cleanup: true
-    local-dir: output
-    upload-dir: travis-builds
+    local-dir: build
+    upload-dir: builds/lib
     on: 
       branch: Feature-StormDetector
+      
+notifications:
+  email:
+    - sriksrin@iu.edu
