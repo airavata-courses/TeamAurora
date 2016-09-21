@@ -20,7 +20,7 @@ before_script:
   - pip install BeautifulSoup4
   - pip install Flask-SQLAlchemy
 
-script: nosetests StormDetector/StormDetector.py
+script: nosetests StormDetector.py
 
 before_deploy:
   - cd ..
