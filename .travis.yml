@@ -16,6 +16,7 @@ before_script:
 
 script: nosetests stormDetector.py
 
+
 before_deploy:
   - cd ..
   - zip -r SGA_TeamAurora_StormDetector.zip StormDetector || true
