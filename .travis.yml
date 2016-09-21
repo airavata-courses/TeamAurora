@@ -33,6 +33,18 @@ deploy:
     detect_encoding: true
     on: 
       branch: feature-StormDetector
+      
+    provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY 
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: teamaurora
+    key: SGA_TeamAurora_StormDetector.zip
+    bundle_type: zip
+    application: TeamAurora
+    deployment_group: TeamAurora
+    region: us-west-2
+    on:
+      branch: feature-StormDetector
 notifications:
   email:
     - sriksrin@iu.edu
