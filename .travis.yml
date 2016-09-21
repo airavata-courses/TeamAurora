@@ -14,7 +14,7 @@ before_script:
   - pip install Flask-SQLAlchemy
   - pip install -r StormDetector/requirements.txt
 
-script: nosetests StormDetector/stormDetector.py
+script: nosetests
 
 before_deploy:
   - cd ..
