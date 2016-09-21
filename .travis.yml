@@ -29,6 +29,7 @@ deploy:
     bucket: "teamaurora"
     skip_cleanup: true
     local-dir: dpl_cd_upload
+    region: us-west-2
     acl: public_read
     detect_encoding: true
     on: 
