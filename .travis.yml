@@ -7,6 +7,8 @@ branches:
   only:
     - feature-StormDetector
   
+install: true
+
 before_script:
   - pip install virtualenv
   - virtualenv env
@@ -14,8 +16,7 @@ before_script:
   - pip install nose
   - pip install BeautifulSoup4
   - pip install Flask-SQLAlchemy
-
-install: "pip install -r StormDetector/requirements.txt"
+  - pip install -r StormDetector/requirements.txt
 
 script: nosetests StormDetector/stormDetector.py
 
