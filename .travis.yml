@@ -9,7 +9,7 @@ branches:
 
 sudo: required
 
-install: pip install -r requirements.txt
+install: pip install -r StormDetector/requirements.txt
 
 before_script:
   - pip install virtualenv
