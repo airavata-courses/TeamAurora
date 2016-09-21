@@ -1,7 +1,12 @@
 language: python
-sudo: required
+sudo: false
 python:
   - "3.4"
+
+branches:
+  only:
+    - feature-StormDetector
+  
 before_script:
   - pip install virtualenv
   - virtualenv env
@@ -14,14 +19,21 @@ install: "pip install -r requirements.txt"
 
 script: nosetests stormDetector.py
 
+before_deploy:
+  - cd ..
+  - zip -r SGA_TeamAurora_StormDetector.zip StormDetector || true
+  - mkdir -p "dpl_cd_upload"
+  - mv SGA_TeamAurora_StormDetector.zip dpl_cd_upload/SGA_TeamAurora_StormDetector.zip || true
+
 deploy:
     provider: s3
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: "teamaurora"
     skip_cleanup: true
-    local-dir: build
-    upload-dir: builds/lib
+    local-dir: dpl_cd_upload
+    acl: public_read
+    detect_encoding: true
     on: 
       branch: Feature-StormDetector
       
