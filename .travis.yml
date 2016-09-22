@@ -51,6 +51,7 @@ deploy:
 
 after_deploy:
   - echo "Performing after deploy procedures..."
+  - done
   
 notifications:
   email:
