@@ -9,7 +9,7 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: "teamaurora"
     skip_cleanup: true
-    local_dir: target/ger.war
-    upload-dir: builds
+    local_dir: target
+    upload-dir: build/libs/forecast_trigger
     on:
         branch: Feature-ForecastTrigger
