@@ -10,7 +10,7 @@ deploy:
   bucket: "teamaurora"
   skip_cleanup: true
   local_dir: target
-  upload-dir: build/libs
+  upload-dir: build/libs/api_gateway
   on:
     branch: feature-apigateway
     
