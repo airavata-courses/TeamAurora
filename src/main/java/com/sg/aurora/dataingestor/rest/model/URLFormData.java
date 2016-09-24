@@ -5,7 +5,25 @@ public class URLFormData {
 	String stationName;
 	String date;
 	String time;
+	int user_id;
+	int request_id;
 	
+	public int getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
+
+	public int getRequest_id() {
+		return request_id;
+	}
+
+	public void setRequest_id(int request_id) {
+		this.request_id = request_id;
+	}
+
 	public String getStationName() {
 		return stationName;
 	}

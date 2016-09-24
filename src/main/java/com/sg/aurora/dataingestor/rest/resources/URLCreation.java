@@ -15,7 +15,12 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.sg.aurora.dataingestor.rest.model.URLFormData;
+
 import com.sg.aurora.dataingestor.rest.model.URLData;
 
 @Path("/urlcreation")
@@ -28,6 +33,45 @@ public class URLCreation {
 		return "Got it on urlgen!";
 	}
 	
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/generate")
+	public URLFormData getURL(URLFormData urlData) throws ParseException, SQLException {
+		//URLData urldata=new URLData("dataingestor", "dataingestor", "dataingestor");
+		
+		URLFormData urlFormDataVar=new URLFormData();
+		
+		
+		
+		PostgreSQLDB postDB = new PostgreSQLDB();
+		int user_id=urlData.getUser_id();
+		int request_id=urlData.getRequest_id();
+		String station_name=urlData.getStationName();
+		Date date = new Date();
+		String service_name="dataIngestor";
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		try {
+			// Convert object to JSON string
+			String jsonInString = mapper.writeValueAsString(urlData);
+			System.out.println(jsonInString);
+			String resultURL="https://aws.amazon.com/noaa-big-data/nexrad/"+urlData.getDate()
+			+urlData.getStationName();
+			postDB.loggingToDB(user_id,request_id,service_name,jsonInString,resultURL);
+		} catch (JsonGenerationException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return urlData;
+	}
+	
+	/*
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -38,7 +82,7 @@ public class URLCreation {
 
 	}
 	
-	/*@POST
+	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	public URLData getURL(@Context UriInfo uriInfo, @FormParam("datetimepickername") String dateTime,
