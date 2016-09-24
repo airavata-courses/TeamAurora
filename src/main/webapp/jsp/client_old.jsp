@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML>
 <html>
 <title>Input Details</title>
@@ -13,18 +12,10 @@
      href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
   </head>
   <body style="padding-left: 40% ; padding-top: 20%;background-color:#ADADAD">
-    <form method="post" action="${pageContext.request.contextPath}/api/urldata">
-    DATE:
-    <div id="datetimepicker1" class="input-append date">
-      <input name="datepicker" id = "date" type="text" style="width:20.5%" value="Choose Date"></input>
-      <span class="add-on">
-        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-      </span>
-    </div>
-    
-    TIME: 
+    <form  method="post" action="${pageContext.request.contextPath}/api/urldata">
+    Date/Time: 
     <div id="datetimepicker" class="input-append date">
-      <input name="timepicker" type="text" style="width:20.5%" value="Choose Time "></input>
+      <input type="text" style="width:20%" name="datetimepickername"></input>
       <span class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
       </span>
@@ -41,16 +32,10 @@
             <option value="KAMX">KAMX</option>
            	<option value="KAPX">KAPX</option>
             <option value="KIND">KIND</option>
-            
 		</select>
     </div>
-    <br>
-    
     <input type="submit" value="Submit" style="width: 24%">
     </form>
-
-
-</script>
 	<script type="text/javascript"
      	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
     </script> 
@@ -65,17 +50,10 @@
     </script>
     <script type="text/javascript">
       $('#datetimepicker').datetimepicker({
-        format: 'hh:mm',
-		pickDate: false,
-		pick12HourFormat: true
-      });
-    </script>
-    <script type="text/javascript">
-      $('#datetimepicker1').datetimepicker({
-        format: 'yyyy/MM/dd',
-		pickTime: false,
+        format: 'yyyy/MM/dd hh:mm',
+        pick12HourFormat: true
       });
     </script>
   </body>
-<html>
+</html>
 <!-- References Used: https://tarruda.github.io/bootstrap-datetimepicker/-->

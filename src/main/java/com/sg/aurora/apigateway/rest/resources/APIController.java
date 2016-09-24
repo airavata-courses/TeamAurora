@@ -45,20 +45,21 @@ public class APIController {
   	@POST
 	@Produces(MediaType.APPLICATION_JSON)
   	@Path("/urldata")
-	public void getURLInfo(@FormParam("datetimepickername") String dateTime, @FormParam("nexrad_station") String station) throws ParseException, SQLException {
-	  URLFormData urlFormData = new URLFormData(station, dateTime, "");
+	public void getURLInfo(@FormParam("datepicker") String date, @FormParam("timepicker") String time,  @FormParam("nexrad_station") String station) throws ParseException, SQLException {
+	  URLFormData urlFormData = new URLFormData(station, date, time);
   	  Client client = ClientBuilder.newClient();
-	  Response response = client.target("http://localhost:8080/dataingestor/urlcreation/generate").request().post(Entity.json(urlFormData));
+	  Response response = client.target("http://localhost:9090/dataingestor/urlcreation/generate").request().post(Entity.json(urlFormData));
 	  System.out.println("Status of call to DataIngestor :: " + response.getStatus());
 	  String str = response.readEntity(String.class);
 	  System.out.println(str);
-	  
+	  /*
 	  String stormDetectorURL = "http://127.0.0.1:5000/https://noaa-nexrad-level2.s3.amazonaws.com/2016/09/17/KIND/KIND20160917_000007_V06";
 	  String responseFromStormDetector = getStormDetectorInfo(stormDetectorURL);
 	  System.out.println("responseFromStormDetector :: " + responseFromStormDetector);
 	  
 	  String stormClusterringURL = "http://127.0.0.1:5050/StormClustering";
 	  getStormClusterringInfo(stormClusterringURL, responseFromStormDetector);
+	  */
     }
   
   	public String getStormDetectorInfo( String incomingURL) {
