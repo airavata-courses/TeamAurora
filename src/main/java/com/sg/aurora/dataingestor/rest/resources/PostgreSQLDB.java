@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -69,8 +70,8 @@ public class PostgreSQLDB {
 						 + "(user_id, request_id, service_name, input, output) VALUES"
 						 + "(?,?,?,?,?)";
 						 
-			    
-				 PreparedStatement preparedStatement = connection.prepareStatement(insertSql);
+				 ResultSet rs = null;
+				 PreparedStatement preparedStatement = connection.prepareStatement(insertSql,Statement.RETURN_GENERATED_KEYS);
 				 preparedStatement.setInt(1, user_id);
 				 preparedStatement.setInt(2, request_id);
 				 preparedStatement.setString(3, service_name);
@@ -80,6 +81,25 @@ public class PostgreSQLDB {
 				 // execute insert SQL stetement
 				 preparedStatement .executeUpdate();
 				 System.out.println("Record is inserted into service_requests_logger table!");
+				 rs = preparedStatement.getGeneratedKeys();
+		            if(rs != null && rs.next()){
+		                System.out.println("Generated Emp Id: "+rs.getInt(1));
+		            }
+		            
+		            //www.java2novice.com/jdbc/auto-generated-keys/#sthash.KObjtEsO.dpuf
+				/* if(returnLastInsertId!=null) {
+					   ResultSet rs = stmt.getGeneratedKeys();
+					    rs.next();
+					   auto_id = rs.getInt(1);
+					}
+				 */
+				 /*
+				 SELECT `AUTO_INCREMENT`
+				 FROM  INFORMATION_SCHEMA.TABLES
+				 WHERE TABLE_SCHEMA = 'DatabaseName'
+				 AND   TABLE_NAME   = 'TableName';
+				 
+				 */
 			    stmt.close();
 			    connection.close();
 				
