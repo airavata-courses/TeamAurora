@@ -4,6 +4,7 @@ jdk: oraclejdk8
 script: mvn clean install
 
 before_deploy:
+  - cd ./target
   - zip -r api_gateway.zip apigateway.war || true
   
 deploy:
