@@ -38,17 +38,17 @@ public class URLCreation {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/generate")
-	public URLFormData getURL(URLFormData urlData) throws ParseException, SQLException {
-		//URLData urldata=new URLData("dataingestor", "dataingestor", "dataingestor");
+	public URLData getURL(URLFormData urlFormData) throws ParseException, SQLException {
+		URLData urlData=new URLData();
 		
 		URLFormData urlFormDataVar=new URLFormData();
 		
 		
 		
 		PostgreSQLDB postDB = new PostgreSQLDB();
-		int user_id=urlData.getUser_id();
-		int request_id=urlData.getRequest_id();
-		String station_name=urlData.getStationName();
+		int user_id=urlFormData.getUser_id();
+		int request_id=urlFormData.getRequest_id();
+		String station_name=urlFormData.getStationName();
 		Date date = new Date();
 		String service_name="dataIngestor";
 		
@@ -56,11 +56,12 @@ public class URLCreation {
 		
 		try {
 			// Convert object to JSON string
-			String jsonInString = mapper.writeValueAsString(urlData);
+			String jsonInString = mapper.writeValueAsString(urlFormData);
 			System.out.println(jsonInString);
-			String resultURL="https://aws.amazon.com/noaa-big-data/nexrad/"+urlData.getDate()
-			+urlData.getStationName();
+			String resultURL="https://aws.amazon.com/noaa-big-data/nexrad/"+urlFormData.getDate()
+			+urlFormData.getStationName();
 			postDB.loggingToDB(user_id,request_id,service_name,jsonInString,resultURL);
+			urlData.setUrl(resultURL);
 		} catch (JsonGenerationException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
