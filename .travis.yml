@@ -12,7 +12,7 @@ deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
-    bucket: teamaurorabucket
+    bucket: "teamaurorabucket"
     skip_cleanup: true
     local_dir: uploadedLibs
     upload-dir: build/libs/api_gateway
@@ -22,8 +22,9 @@ deploy:
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
-    bucket: teamaurorabucket
-    key: build/libs/api_gateway/api_gateway.zip
+    bucket: "teamaurorabucket"
+    #key: build/libs/api_gateway/api_gateway.zip
+    key: api_gateway.zip
     bundle_type: zip
     application: TeamAurora
     deployment_group: TeamAurora
