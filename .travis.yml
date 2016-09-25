@@ -3,13 +3,34 @@ jdk: oraclejdk8
 
 script: mvn clean install
 
+before_deploy:
+  - cd ..
+  - zip -r ForecastTrigger.zip ForecastTrigger.war || true
+
 deploy:
-    provider: s3
-    access_key_id: $AWS_ACCESS_KEY_ID
-    secret_access_key: $AWS_SECRET_ACCESS_KEY
-    bucket: "teamaurora"
-    skip_cleanup: true
-    local_dir: target
-    upload-dir: build/libs/forecast_trigger
-    on:
+   - provider: s3
+     access_key_id: $AWS_ACCESS_KEY_ID
+     secret_access_key: $AWS_SECRET_ACCESS_KEY
+     bucket: teamaurorabucket
+     #local_dir: 
+     skip_cleanup: true
+     local_dir: target
+     upload-dir: build/libs/forecast_trigger
+     region: us-west-2
+     acl: public_read
+     detect_encoding: true
+     on:
         branch: Feature-ForecastTrigger
+      
+   - provider: codedeploy
+     access_key_id: $AWS_ACCESS_KEY_ID # declared in Travis repo settings
+     secret_access_key: $AWS_SECRET_ACCESS_KEY
+     bucket: teamaurorabucket
+     key: build/libs/forecast_trigger/
+     bundle_type: zip
+     application: TeamAurora
+     deployment_group: TeamAurora
+     region: us-west-2
+     on:
+        branch: Feature-ForecastTrigger
+
