@@ -7,7 +7,7 @@ install: pip install -r StormClustering/requirements.txt
 
 before_script:
   - pip install virtualenv
-  - cd StormDetector
+  - cd StormClustering
   - virtualenv env
   - source env/bin/activate
   - pip install nose
@@ -30,7 +30,7 @@ deploy:
     bucket: "teamaurora"
     skip_cleanup: true
     local-dir: dpl_cd_upload
-    upload-dir: build/libs/storm_detection
+    upload-dir: build/libs/storm_clustering
     acl: public_read
     detect_encoding: true
     on: 
