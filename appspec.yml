@@ -4,6 +4,10 @@ files:
   - source: /
     destination: /home/ec2-user
 hooks:
+  BeforeInstall:
+    - location: StormDectector/scripts/install.sh
+      timeout: 3600
+      runas: root
   ApplicationStart:
     - location: StormDectector/scripts/install.sh
       timeout: 3600
