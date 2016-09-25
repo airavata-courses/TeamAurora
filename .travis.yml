@@ -1,16 +1,58 @@
 language: python
+
 python:
   - "3.4"
-install: "pip install -r requirements.txt"
 
-script: python StormClustering.py
+install: pip install -r StormClustering/requirements.txt
+
+before_script:
+  - pip install virtualenv
+  - cd StormDetector
+  - virtualenv env
+  - source env/bin/activate
+  - pip install nose
+  - pip install BeautifulSoup4
+  - pip install Flask-SQLAlchemy
+
+script: nosetests stormClustering.py
+
+
+before_deploy:
+  - cd ..
+  - zip -r SGA_TeamAurora_StormClustering.zip StormClustering appspec.yml || true
+  - mkdir -p "dpl_cd_upload"
+  - mv SGA_TeamAurora_StormClustering.zip dpl_cd_upload/SGA_TeamAurora_StormClustering.zip || true
 
 deploy:
-    provider: s3
+  - provider: s3
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: "teamaurora"
     skip_cleanup: true
-    upload-dir: builds
+    local-dir: dpl_cd_upload
+    upload-dir: build/libs/storm_detection
+    acl: public_read
+    detect_encoding: true
     on: 
-      branch: Feature-StormClustering
+      branch: feature-StormClustering
+      
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: teamaurora
+    key: build/libs/storm_clustering/SGA_TeamAurora_StormClustering.zip
+    bundle_type: zip
+    application: TeamAurora
+    deployment_group: TeamAurora
+    region: us-west-2
+    on:
+      branch: feature-StormClustering
+      
+
+after_deploy:
+  - echo "Performing after deploy procedures..."
+  - done
+  
+notifications:
+  email:
+    - sriksrin@iu.edu
