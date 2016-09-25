@@ -4,7 +4,6 @@ jdk: oraclejdk8
 script: mvn clean install
 
 before_deploy:
-  - cd ..
   - zip -r ForecastTrigger.zip ForecastTrigger.war || true
 
 deploy:
