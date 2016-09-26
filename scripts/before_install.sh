@@ -1,5 +1,5 @@
 echo 'killing existing tomcat process if any'
-cd /usr/local/tomcat7/apache-tomcat-7.0.72
+cd /usr/share/tomcat8
 sudo sh ./bin/shutdown.sh
 sleep 30
 echo 'Setting environment'
