@@ -4,14 +4,17 @@ jdk: oraclejdk8
 script: mvn clean install
 
 before_deploy:
-  - zip -r ForecastTrigger.zip ForecastTrigger.war || true
+  - cd ..
+  - zip -r SGA_TeamAurora_ForecastTrigger.zip scripts appspec.yml || true
+  - mkdir -p "dpl_cd_upload"
+  - mv SGA_TeamAurora_ForecastTriggerg.zip dpl_cd_upload/SGA_TeamAurora_ForecastTrigger.zip || true
 
 deploy:
    - provider: s3
      access_key_id: $AWS_ACCESS_KEY_ID
      secret_access_key: $AWS_SECRET_ACCESS_KEY
      bucket: teamaurorabucket
-     #local_dir: 
+     local_dir: dpl_cd_upload
      skip_cleanup: true
      local_dir: target
      upload-dir: build/libs/forecast_trigger
@@ -25,7 +28,7 @@ deploy:
      access_key_id: $AWS_ACCESS_KEY_ID # declared in Travis repo settings
      secret_access_key: $AWS_SECRET_ACCESS_KEY
      bucket: teamaurorabucket
-     key: build/libs/forecast_trigger/
+     key: build/libs/forecast_trigger/SGA_TeamAurora_ForecastTrigger.zip
      bundle_type: zip
      application: TeamAurora
      deployment_group: TeamAurora
