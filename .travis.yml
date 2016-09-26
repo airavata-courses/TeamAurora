@@ -4,7 +4,7 @@ jdk: oraclejdk8
 script: mvn clean install
 
 before_deploy:
-  - cd target/
+  - cd ./target
   - zip -r SGA_TeamAurora_ForecastTrigger.zip ForecastTrigger.war || true
   #- zip -r SGA_TeamAurora_ForecastTrigger.zip target scripts appspec.yml || true
   - mkdir -p "dpl_cd_upload"
