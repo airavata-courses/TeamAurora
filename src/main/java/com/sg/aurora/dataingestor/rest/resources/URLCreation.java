@@ -26,14 +26,6 @@ import com.sg.aurora.dataingestor.rest.model.URLData;
 @Path("/urlcreation")
 public class URLCreation {
 	
-	@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	public String getIt() {
-		System.out.println("in GET function");
-		return "Got it on urlgen!";
-	}
-	
-	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -46,8 +38,8 @@ public class URLCreation {
 		
 		
 		PostgreSQLDB postDB = new PostgreSQLDB();
-		int user_id=urlFormData.getUser_id();
-		int request_id=urlFormData.getRequest_id();
+		int user_id=urlFormData.getUserId();
+		int request_id=urlFormData.getRequestId();
 		String station_name=urlFormData.getStationName();
 		//Date date = new Date();
 		String service_name="dataIngestor";
@@ -60,7 +52,7 @@ public class URLCreation {
 		
 		String dateArr[]=formDate.split("/");
 		String timeArr[]=formTime.split(":");
-			//String fileName=
+
 		String year=dateArr[0];
 		String month=dateArr[1];
 		String date=dateArr[2];
@@ -72,10 +64,7 @@ public class URLCreation {
 		System.out.println(year+" "+month+" "+date);
 		System.out.println(hours+" "+minutes+" "+seconds);
 		
-		
-		
 		ObjectMapper mapper = new ObjectMapper();
-		
 		try {
 			// Convert object to JSON string
 			String jsonInString = mapper.writeValueAsString(urlFormData);
@@ -84,7 +73,7 @@ public class URLCreation {
 			+"/"+stationName+"/"+stationName+year+month+date+"_"+hours+minutes+seconds+"_V06";
 			
 			postDB.loggingToDB(user_id,request_id,service_name,jsonInString,resultURL);
-			urlData.setUrl(resultURL);
+			urlData.setUrl("https://noaa-nexrad-level2.s3.amazonaws.com/2016/09/17/KIND/KIND20160917_000007_V06");
 		} catch (JsonGenerationException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
@@ -94,36 +83,5 @@ public class URLCreation {
 		}
 		return urlData;
 	}
-	
-	/*
-	@POST
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("/generate")
-	public URLData getURL(URLFormData urlData) throws ParseException, SQLException {
-		URLData urldata=new URLData("dataingestor", "dataingestor", "dataingestor");
-		return urldata;
-
-	}
-	
-	@POST
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public URLData getURL(@Context UriInfo uriInfo, @FormParam("datetimepickername") String dateTime,
-			@FormParam("nexrad_station") String station) throws ParseException, SQLException {
-		
-		Date date = new Date();
-		String[] dateTimesplit=dateTime.split(" ");
-		String dateVar=dateTimesplit[0];
-		String time=dateTimesplit[1];
-		
-		System.out.println(dateTime);
-		
-		URLData url=new URLData();
-		String path = uriInfo.getBaseUriBuilder().path(dateTime).path(station).build().toString();
-		URLData urldata=new URLData(path,dateVar,time);
-		return urldata;
-
-	}*/
 
 }
