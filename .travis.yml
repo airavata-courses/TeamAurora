@@ -6,6 +6,8 @@ script: mvn clean install
 sudo: true
 
 before_deploy:
+  - ls
+  - pwd
   - mkdir -p forecast_trigger
   - cp -r ./scripts forecast_trigger/scripts
   - cp  ./target/ForecastTrigger.war forecast_trigger/ForecastTrigger.war
