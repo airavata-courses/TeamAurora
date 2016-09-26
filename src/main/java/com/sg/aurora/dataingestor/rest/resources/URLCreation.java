@@ -81,7 +81,7 @@ public class URLCreation {
 			String jsonInString = mapper.writeValueAsString(urlFormData);
 			System.out.println(jsonInString);
 			String resultURL="https://aws.amazon.com/noaa-big-data/nexrad/"+urlFormData.getDate()
-			+stationName+"/"+stationName+year+month+date+"_"+hours+minutes+seconds+"V_06";
+			+"/"+stationName+"/"+stationName+year+month+date+"_"+hours+minutes+seconds+"_V06";
 			
 			postDB.loggingToDB(user_id,request_id,service_name,jsonInString,resultURL);
 			urlData.setUrl(resultURL);
