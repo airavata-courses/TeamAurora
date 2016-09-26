@@ -14,7 +14,7 @@ before_deploy:
   - cp -r ./scripts data_ingestor/scripts
   - pwd
   - ls
-  - mv ./target/DataIngestor.war ./target/dataingestor.war
+  #- mv ./target/DataIngestor.war ./target/dataingestor.war
   - cp  ./target/dataingestor.war data_ingestor/dataingestor.war
   - zip -r SGA_TeamAurora_DataIngestor.zip data_ingestor appspec.yml || true
   - mkdir -p "dpl_cd_upload"
