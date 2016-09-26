@@ -4,7 +4,9 @@ language: java
 jdk:
   - oraclejdk8
   
-install: npm install -r StormClustering/requirements.txt
+install:
+  - npm install pip
+  - npm install -r StormClustering/requirements.txt
 
 before_script:
   - npm install python  
