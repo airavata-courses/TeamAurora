@@ -1,10 +1,9 @@
-echo 'killing existing tomcat process if any'
-cd /usr/share/tomcat8
-sudo sh ./bin/shutdown.sh
+echo 'Stopping Tomcat Service. This will take some time.'
+sudo service tomcat8 stop
 sleep 30
 echo 'Setting environment'
 export JAVA_HOME=/usr/lib/jvm/java
-echo 'check if maven is installed'
+echo 'Checking if MAVEN is installed'
 mvn --version
 if [ "$?" -ne 0 ]; then
     echo 'Installing Maven...'
