@@ -47,10 +47,9 @@ def stormClustering():
 
 
     responseCode = 200
-    list = [
-        {'param': 'responseCode', 'val': responseCode},
-        {'param': 'byteStream',   'val': "dummy clusters"}
-    ]
+
+    list =   {'param': 'byteStream',   'cluster': "dummy clusters"}
+
 
 
     requestLog = Service_Requests_Log(requestId,userId, datetime.datetime.now(),"data.json","clustering","StormClustering")
