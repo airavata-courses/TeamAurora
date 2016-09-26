@@ -22,7 +22,6 @@ deploy:
      bucket: teamaurorabucket
      local_dir: dpl_cd_upload
      skip_cleanup: true
-     local_dir: target
      upload-dir: build/libs/forecast_trigger
      region: us-west-2
      acl: public_read
@@ -41,4 +40,3 @@ deploy:
      region: us-west-2
      on:
         branch: Feature-ForecastTrigger
-
