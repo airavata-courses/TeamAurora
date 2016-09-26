@@ -8,13 +8,13 @@ before-install: pip install -r StormClustering/requirements.txt
 
 before_script:
   - npm install python  
-  - pip install virtualenv
+  - npm pip install virtualenv
   - cd StormClustering
   - virtualenv env
   - source env/bin/activate
-  - pip install nose
-  - pip install BeautifulSoup4
-  - pip install Flask-SQLAlchemy
+  - npm pip install nose
+  - npm pip install BeautifulSoup4
+  - npm pip install Flask-SQLAlchemy
 
   
 
