@@ -19,7 +19,7 @@
 						<label for="username">Enter User Name:</label>
 						<input type="text" class="form-control" id="username" name="username"/><br/><br/>  
 						<label for="password">Enter Password:</label>
-						<input type="text" class="form-control" id="password" name="password"/><br/><br/>  
+						<input type="password" class="form-control" id="password" name="password"/><br/><br/>  
 						<input type="submit" class="btn btn-primary" value="Login"/>  
 					</form>
 				</div>
