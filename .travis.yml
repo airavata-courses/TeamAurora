@@ -38,3 +38,4 @@ deploy:
      region: us-west-2
      on:
         branch: Feature-ForecastTrigger
+
