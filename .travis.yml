@@ -10,7 +10,7 @@ before_script:
   - npm install python  
   - npm install virtualenv
   - cd StormClustering
-  - virtualenv env
+  #- virtualenv env
   - source env/bin/activate
   - npm install nose
   - npm install BeautifulSoup4
