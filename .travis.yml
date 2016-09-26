@@ -3,19 +3,45 @@ jdk: oraclejdk8
 
 script: mvn clean install
 
+sudo: true
+
+before_deploy:
+  - ls
+  - pwd
+  - mkdir -p data_ingestor
+  - pwd
+  - ls
+  - cp -r ./scripts data_ingestor/scripts
+  - pwd
+  - ls
+  - mv ./target/DataIngestor.war ./target/dataingestor.war
+  - cp  ./target/dataingestor.war data_ingestor/dataingestor.war
+  - zip -r SGA_TeamAurora_DataIngestor.zip data_ingestor appspec.yml || true
+  - mkdir -p "dpl_cd_upload"
+  - mv SGA_TeamAurora_DataIngestor.zip dpl_cd_upload/SGA_TeamAurora_DataIngestor.zip || true
+
 deploy:
-  provider: s3
-  access_key_id: $AWS_ACCESS_KEY_ID
-  secret_access_key: $AWS_SECRET_ACCESS_KEY
-  bucket: "teamaurora"
-  skip_cleanup: true
-  local_dir: target
-  upload-dir: build/libs/data_ingestor
-  on:
-    branch: Feature-DataIngestor
-    
-notifications:
-  email:
-    - psanghvi@iu.edu
-    - vkaushal@iu.edu
-    - kmsheth@iu.edu
+   - provider: s3
+     access_key_id: $AWS_ACCESS_KEY_ID
+     secret_access_key: $AWS_SECRET_ACCESS_KEY
+     bucket: teamaurorabucket
+     local_dir: dpl_cd_upload
+     skip_cleanup: true
+     upload-dir: build/libs/data_ingestor
+     region: us-west-2
+     acl: public_read
+     detect_encoding: true
+     on:
+        branch: Feature-DataIngestor
+      
+   - provider: codedeploy
+     access_key_id: $AWS_ACCESS_KEY_ID # declared in Travis repo settings
+     secret_access_key: $AWS_SECRET_ACCESS_KEY
+     bucket: teamaurorabucket
+     key: build/libs/forecast_trigger/SGA_TeamAurora_DataIngestor.zip
+     bundle_type: zip
+     application: TeamAurora
+     deployment_group: TeamAurora
+     region: us-west-2
+     on:
+        branch: Feature-DataIngestor
