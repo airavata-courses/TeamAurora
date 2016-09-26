@@ -10,7 +10,7 @@ before_deploy:
   - cp target/ForecastTrigger.war ./ForecastTrigger.war
   - zip -r SGA_TeamAurora_ForecastTrigger.zip scripts ForecastTrigger.war appspec.yml || true
   - mkdir -p "dpl_cd_upload"
-  - mv SGA_TeamAurora_ForecastTrigger.zip dpl_cd_upload/SGA_TeamAurora_ForecastTrigger.zip || true
+  - mv SGA_TeamAurora_ForecastTrigger.zip dpl_cd_upload || true
 
 deploy:
    - provider: s3
