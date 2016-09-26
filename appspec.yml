@@ -1,0 +1,14 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user
+hooks:
+  BeforeInstall:
+    - location: api_gateway/scripts/before-install.sh
+      timeout: 3600
+      runas: root
+  ApplicationStart:
+    - location: api_gateway/scripts/install.sh
+      timeout: 3600
+      runas: root
