@@ -9,6 +9,6 @@ pip install Flask >> /var/log/sga-teamaurora-StormClustering-install.log
 pip install nose >> /var/log/sga-teamaurora-StormClustering-install.log
 pip install BeautifulSoup4 >> /var/log/sga-teamaurora-StormClustering-install.log
 pip install Flask-SQLAlchemy >> /var/log/sga-teamaurora-StormClustering-install.log
-#echo 'Running Flask Server' >> /var/log/sga-teamaurora-flask-install.log
+
 export FLASK_APP=StormClustering.py
 flask run --host=0.0.0.0 --port=65000 >> /var/log/sga-teamaurora-StormClustering-server.log 2>&1 &
