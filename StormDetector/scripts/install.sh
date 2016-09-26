@@ -10,5 +10,6 @@ pip install nose >> /var/log/sga-teamaurora-StormDetection-install.log
 pip install BeautifulSoup4 >> /var/log/sga-teamaurora-StormDetection-install.log
 pip install Flask-SQLAlchemy >> /var/log/sga-teamaurora-StormDetection-install.log
 #echo 'Running Flask Server' >> /var/log/sga-teamaurora-flask-install.log
-export FLASK_APP=StormDetection_.py
-flask run --host=0.0.0.0 --port=65000 >> /var/log/sga-teamaurora-StormDetection-server.log 2>&1 &
+export FLASK_APP=StormDetection.py
+flask run --host=0.0.0.0 --port=5000 >> /var/log/sga-teamaurora-StormDetection-server.log 2>&1 &
+python StormDetection.py >> /var/log/sga-teamaurora-StormDetection-server.log 2>&1 &
