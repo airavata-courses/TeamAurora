@@ -49,8 +49,30 @@ public class URLCreation {
 		int user_id=urlFormData.getUser_id();
 		int request_id=urlFormData.getRequest_id();
 		String station_name=urlFormData.getStationName();
-		Date date = new Date();
+		//Date date = new Date();
 		String service_name="dataIngestor";
+		
+		String formDate=urlFormData.getDate();
+		String formTime=urlFormData.getTime();
+		
+		System.out.println(formDate);
+		System.out.println(formTime);
+		
+		String dateArr[]=formDate.split("/");
+		String timeArr[]=formTime.split(":");
+			//String fileName=
+		String year=dateArr[0];
+		String month=dateArr[1];
+		String date=dateArr[2];
+		
+		String hours=timeArr[0];
+		String minutes=timeArr[1];
+		String seconds=timeArr[2];
+		String stationName=urlFormData.getStationName();
+		System.out.println(year+" "+month+" "+date);
+		System.out.println(hours+" "+minutes+" "+seconds);
+		
+		
 		
 		ObjectMapper mapper = new ObjectMapper();
 		
@@ -59,7 +81,8 @@ public class URLCreation {
 			String jsonInString = mapper.writeValueAsString(urlFormData);
 			System.out.println(jsonInString);
 			String resultURL="https://aws.amazon.com/noaa-big-data/nexrad/"+urlFormData.getDate()
-			+urlFormData.getStationName();
+			+stationName+"/"+stationName+year+month+date+"_"+hours+minutes+seconds+"V_06";
+			
 			postDB.loggingToDB(user_id,request_id,service_name,jsonInString,resultURL);
 			urlData.setUrl(resultURL);
 		} catch (JsonGenerationException e) {
