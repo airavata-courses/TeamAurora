@@ -27,7 +27,7 @@ deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
-    bucket: "teamaurora"
+    bucket: teamaurorabucket
     skip_cleanup: true
     local-dir: dpl_cd_upload
     upload-dir: build/libs/storm_clustering
@@ -39,7 +39,7 @@ deploy:
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
-    bucket: teamaurora
+    bucket: teamaurorabucket
     key: build/libs/storm_clustering/SGA_TeamAurora_StormClustering.zip
     bundle_type: zip
     application: TeamAurora
