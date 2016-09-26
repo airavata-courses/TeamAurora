@@ -11,7 +11,7 @@ before_script:
   - npm install virtualenv
   - cd StormClustering
   #- virtualenv env
-  - source env/bin/activate
+  #- source env/bin/activate
   - npm install nose
   - npm install BeautifulSoup4
   - npm install Flask-SQLAlchemy
