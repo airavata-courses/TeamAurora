@@ -38,7 +38,7 @@ deploy:
      access_key_id: $AWS_ACCESS_KEY_ID # declared in Travis repo settings
      secret_access_key: $AWS_SECRET_ACCESS_KEY
      bucket: teamaurorabucket
-     key: build/libs/forecast_trigger/SGA_TeamAurora_DataIngestor.zip
+     key: build/libs/data_ingestor/SGA_TeamAurora_DataIngestor.zip
      bundle_type: zip
      application: TeamAurora
      deployment_group: TeamAurora
