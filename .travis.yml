@@ -8,7 +8,8 @@ sudo: true
 before_deploy:
   - mkdir -p forecast_trigger
   - cp -r scripts forecast_trigger/scripts
-  - cp  target/ForecastTrigger.war forecast_trigger/ForecastTrigger.war
+  - cd target
+  - cp  ForecastTrigger.war ../forecast_trigger/ForecastTrigger.war
   - zip -r SGA_TeamAurora_ForecastTrigger.zip forecast_trigger appspec.yml || true
   - mkdir -p "dpl_cd_upload"
   - mv SGA_TeamAurora_ForecastTrigger.zip dpl_cd_upload/SGA_TeamAurora_ForecastTrigger.zip || true
