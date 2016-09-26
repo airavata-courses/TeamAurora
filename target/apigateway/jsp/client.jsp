@@ -5,14 +5,14 @@
   <head>
   	<style>
 	body: { 
-		background-color:#000000;
+
 	}
 	</style>
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen"
      href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
   </head>
-  <body style="padding-left: 40% ; padding-top: 20%;background-color:#ADADAD">
+  <body style="padding-left: 40% ; padding-top: 20%">
     <form method="post" action="${pageContext.request.contextPath}/api/urldata">
     DATE:
     <div id="datetimepicker1" class="input-append date">
