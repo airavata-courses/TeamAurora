@@ -6,15 +6,9 @@ script: mvn clean install
 sudo: true
 
 before_deploy:
-  - ls
-  - pwd
   - mkdir -p forecast_trigger
-  - pwd
-  - ls
-  - cp -r ./scripts forecast_trigger/scripts
-  - pwd
-  - ls
-  - cp  ./target/ForecastTrigger.war forecast_trigger/ForecastTrigger.war
+  - cp -r scripts forecast_trigger/scripts
+  - cp  target/ForecastTrigger.war forecast_trigger/ForecastTrigger.war
   - zip -r SGA_TeamAurora_ForecastTrigger.zip forecast_trigger appspec.yml || true
   - mkdir -p "dpl_cd_upload"
   - mv SGA_TeamAurora_ForecastTrigger.zip dpl_cd_upload/SGA_TeamAurora_ForecastTrigger.zip || true
