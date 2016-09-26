@@ -3,7 +3,7 @@ jdk: oraclejdk8
 
 script: mvn clean install
 
-sudo: false
+sudo: required
 
 before_deploy:
   #- zip -r SGA_TeamAurora_ForecastTrigger.zip ForecastTrigger.war || true
