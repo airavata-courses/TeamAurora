@@ -4,14 +4,10 @@ jdk: oraclejdk8
 script: mvn clean install
 
 before_deploy:
-  - pwd
-  - ls
   - mkdir -p api_gateway
-  - ls
   - cp ./target/apigateway.war ./api_gateway/apigateway.war
   - cp -R ./scripts api_gateway/scripts
   - zip -r SGA_TeamAurora_APIGateway.zip api_gateway appspec.yml || true
-  - ls
   - mkdir -p "uploadLibs"
   - mv SGA_TeamAurora_APIGateway.zip uploadLibs/SGA_TeamAurora_APIGateway.zip || true
   
@@ -22,7 +18,7 @@ deploy:
     bucket: teamaurorabucket
     skip_cleanup: true
     acl: public_read
-    local_dir: target
+    local_dir: uploadLibs
     upload-dir: build/libs/api_gateway
     on:
       branch: feature-apigateway
@@ -31,7 +27,7 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: teamaurorabucket
-    key: build/libs/api_gateway/api_gateway.zip
+    key: build/libs/api_gateway/SGA_TeamAurora_APIGateway.zip
     bundle_type: zip
     application: TeamAurora
     deployment_group: TeamAurora
