@@ -1,5 +1,9 @@
 echo 'starting installation process' >> /var/log/sga-teamaurora-StormClustering-install.log
+mkdir -p python_libs
+cd python_libs
+mkdir -p stormclustering
 cd '/home/ec2-user/StormClustering'
+mv ./home/ec2-user/StormClustering ./python_libs/stormclustering/StormClustering
 
 echo 'Activating virtualenv for StormClustering Microservice' >> /var/log/sga-teamaurora-StormClustering-install.log
 pip install virtualenv >> /var/log/sga-teamaurora-StormClustering-install.log
