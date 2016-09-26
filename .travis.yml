@@ -7,7 +7,7 @@ sudo: false
 
 before_deploy:
   #- zip -r SGA_TeamAurora_ForecastTrigger.zip ForecastTrigger.war || true
-  - mkdir reqDir
+  - mkdir -p reqDir
   - cp target/ForecastTrigger.war reqDir/ForecastTrigger.war
   - cp -r ./scripts reqDir/scripts
   - cp appspec.yml reqDir/appspec.yml
