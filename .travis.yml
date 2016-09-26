@@ -3,10 +3,7 @@ language: java
 
 jdk:
   - oraclejdk8
-
-
-install: pip install -r StormClustering/requirements.txt
-
+  
 before_script:
   - npm install python  
   - pip install virtualenv
@@ -16,7 +13,9 @@ before_script:
   - pip install nose
   - pip install BeautifulSoup4
   - pip install Flask-SQLAlchemy
-  -  install python
+
+  
+before-install: pip install -r StormClustering/requirements.txt
 
 script: nosetests StormClustering.py
 
