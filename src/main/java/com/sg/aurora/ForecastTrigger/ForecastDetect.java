@@ -1,6 +1,7 @@
 package com.sg.aurora.ForecastTrigger;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
@@ -30,7 +31,7 @@ public class ForecastDetect {
     @Path("/storm")
 	@Consumes(MediaType.APPLICATION_JSON) 
 	@Produces(MediaType.APPLICATION_JSON) 
-	public Response results(String storm) throws SQLException {
+	public Response results(String storm) throws SQLException, IOException {
     	
     	URLFormData urlFormData=new URLFormData();
     	PostgreSQLDB postDB = new PostgreSQLDB();
