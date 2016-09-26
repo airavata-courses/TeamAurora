@@ -5,7 +5,7 @@ files:
     destination: /home/ec2-user
 hooks:
   BeforeInstall:
-    - location: api_gateway/scripts/before-install.sh
+    - location: api_gateway/scripts/before_install.sh
       timeout: 3600
       runas: root
   ApplicationStart:
