@@ -7,10 +7,13 @@ sudo: false
 
 before_deploy:
   #- zip -r SGA_TeamAurora_ForecastTrigger.zip ForecastTrigger.war || true
-  - cp target/ForecastTrigger.war ./ForecastTrigger.war
-  - zip -r SGA_TeamAurora_ForecastTrigger.zip scripts ForecastTrigger.war appspec.yml || true
+  - mkdir reqDir
+  - cp target/ForecastTrigger.war reqDir/ForecastTrigger.war
+  - cp -r ./scripts reqDir/scripts
+  - cp appspec.yml reqDir/appspec.yml
+  - zip -r SGA_TeamAurora_ForecastTrigger.zip reqDir || true
   - mkdir -p "dpl_cd_upload"
-  - mv SGA_TeamAurora_ForecastTrigger.zip dpl_cd_upload || true
+  - mv SGA_TeamAurora_ForecastTrigger.zip dpl_cd_upload/SGA_TeamAurora_ForecastTrigger.zip || true
 
 deploy:
    - provider: s3
