@@ -1,12 +1,9 @@
-import datetime
-import json
 import urllib.error
 import urllib.request
-
+import datetime
 from bs4 import BeautifulSoup
 from flask_sqlalchemy import SQLAlchemy
-
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request,json
 
 
 app = Flask(__name__)
@@ -17,9 +14,10 @@ db = SQLAlchemy(app)
 
 class Service_Requests_Log(db.Model):
     #RequestID, TimeStamp, Input, Output , Service
-    __tablename__ = 'Service_Requests_Logger'
+    __tablename__ = 'service_requests_logger'
     id = db.Column(db.Integer, primary_key=True)
     request_id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer)
     timestamp = db.Column(db.DateTime)
     input = db.Column(db.String(80))
     output = db.Column(db.String(80))
@@ -27,9 +25,10 @@ class Service_Requests_Log(db.Model):
 
     db.PrimaryKeyConstraint('id')
 
-    def __init__(self,request_id, timestamp, Input, Output, Service):
+    def __init__(self,request_id, userId, timestamp, Input, Output, Service):
         self.timestamp = timestamp
         self.request_id = request_id
+        self.user_id = userId
         self.input = Input
         self.output = Output
         self.service_name = Service
@@ -37,18 +36,24 @@ class Service_Requests_Log(db.Model):
     def __repr__(self):
         return self.request_id
 
-@app.route('/') 
+@app.route('/')
+@app.route('/StormDetector' , methods=['GET', 'POST'])
 @app.route('/noaa-nexrad-level2.s3.amazonaws.com/<yy>/<mm>/<dd>/<stationId>/<filename>', methods=['GET'])
 @app.route('/https://noaa-nexrad-level2.s3.amazonaws.com/<yy>/<mm>/<dd>/<stationId>/<filename>', methods=['GET'])
 def stormDetector(yy=None, mm=None, dd=None, stationId=None, filename=None):
 
+    apiData = request.json
+
+    nexradUrl = apiData['url']
+    requestID = apiData['requestId']
+    userid = apiData['userId']
 
     baseUrl = 'https://noaa-nexrad-level2.s3.amazonaws.com/'
     kmlUrl =  baseUrl + yy + '/' + mm + '/' + dd + '/' + stationId + '/' + filename
 
 
     responseCode = 200
-    response = urllib.request.urlopen(kmlUrl)
+    response = urllib.request.urlopen(nexradUrl)
     data = response.read()
     text = BeautifulSoup(data).encode('utf-8')
 
@@ -66,7 +71,7 @@ def stormDetector(yy=None, mm=None, dd=None, stationId=None, filename=None):
     with open('data.json', 'w') as f:
         json.dump(json_data, f)
 
-    requestLog = Service_Requests_Log(1,datetime.datetime.now(),kmlUrl,"data.json","StormDetction")
+    requestLog = Service_Requests_Log(requestID,userid,datetime.datetime.now(),nexradUrl,"data.json","StormDetction")
     db.session.add(requestLog)
     db.session.commit()
 
