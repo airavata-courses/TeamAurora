@@ -3,12 +3,11 @@ jdk: oraclejdk8
 
 script: mvn clean install
 
-sudo: required
+sudo: true
 
 before_deploy:
-  #- zip -r SGA_TeamAurora_ForecastTrigger.zip ForecastTrigger.war || true
   - mkdir -p forecast_trigger
-  - cp target/ForecastTrigger.war forecast_trigger/ForecastTrigger.war
+  - cp  target/ForecastTrigger.war forecast_trigger/ForecastTrigger.war
   - cp -r ./scripts forecast_trigger/scripts
   - zip -r SGA_TeamAurora_ForecastTrigger.zip forecast_trigger appspec.yml || true
   - mkdir -p "dpl_cd_upload"
