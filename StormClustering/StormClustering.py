@@ -11,9 +11,10 @@ db = SQLAlchemy(app)
 
 class Service_Requests_Log(db.Model):
     #RequestID, TimeStamp, Input, Output , Service
-    __tablename__ = 'Service_Requests_Logger'
+    __tablename__ = 'service_requests_logger'
     id = db.Column(db.Integer, primary_key=True)
     request_id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer)
     timestamp = db.Column(db.DateTime)
     input = db.Column(db.String(80))
     output = db.Column(db.String(80))
@@ -21,9 +22,10 @@ class Service_Requests_Log(db.Model):
 
     db.PrimaryKeyConstraint('id')
 
-    def __init__(self,request_id, timestamp, Input, Output, Service):
+    def __init__(self,request_id, user_id, timestamp, Input, Output, Service):
         self.timestamp = timestamp
         self.request_id = request_id
+        self.user_id = user_id
         self.input = Input
         self.output = Output
         self.service_name = Service
@@ -37,6 +39,8 @@ def stormClustering():
     data = request.json
 
     kmlStream = str(data['results']['val'])
+    userId = str(data['userId'])
+    requestId = str(data['requestId'])
 
     with open('test.txt' , 'w') as f:
         f.write(str(kmlStream))
@@ -48,16 +52,16 @@ def stormClustering():
         {'param': 'byteStream',   'val': "dummy clusters"}
     ]
 
-    '''
-    requestLog = Service_Requests_Log(1,datetime.datetime.now(),"data.json","clustering","StormClustering")
+
+    requestLog = Service_Requests_Log(requestId,userId, datetime.datetime.now(),"data.json","clustering","StormClustering")
     db.session.add(requestLog)
-    db.session.commit()'''
+    db.session.commit()
 
     return jsonify(results=list)
 
 if __name__ == '__main__':
     app.run(
-        host="127.0.0.1",
+        host="0.0.0.0",
         port=int(5050),
         #debug=True
     )
