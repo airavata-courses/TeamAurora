@@ -11,6 +11,7 @@ before_deploy:
   - cp ./target/apigateway.war ./api_gateway/apigateway.war
   - cp -R ./scripts api_gateway/scripts
   - zip -r SGA_TeamAurora_APIGateway.zip api_gateway appspec.yml || true
+  - ls
   - mkdir -p "uploadLibs"
   - mv SGA_TeamAurora_APIGateway.zip uploadLibs/SGA_TeamAurora_APIGateway.zip || true
   
