@@ -36,7 +36,7 @@ public class APIController {
     @POST
 	@Produces(MediaType.APPLICATION_JSON)
   	@Path("/urldata")
-	public void getURLInfo(@FormParam("datepicker") String date, @FormParam("timepicker") String time,  @FormParam("nexrad_station") String station, @Context HttpServletRequest request) throws ParseException, SQLException {
+	public Response getURLInfo(@FormParam("datepicker") String date, @FormParam("timepicker") String time,  @FormParam("nexrad_station") String station, @Context HttpServletRequest request) throws ParseException, SQLException {
   		HttpSession session = request.getSession();
   		int userId = (Integer)session.getAttribute("USERID");
   		RequestService requestService = new RequestService();
