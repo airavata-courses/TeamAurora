@@ -49,7 +49,7 @@ def stormDetector(yy=None, mm=None, dd=None, stationId=None, filename=None):
     userid = apiData['userId']
 
     baseUrl = 'https://noaa-nexrad-level2.s3.amazonaws.com/'
-    kmlUrl =  baseUrl + yy + '/' + mm + '/' + dd + '/' + stationId + '/' + filename
+    #kmlUrl =  baseUrl + yy + '/' + mm + '/' + dd + '/' + stationId + '/' + filename
 
 
     responseCode = 200
@@ -71,15 +71,19 @@ def stormDetector(yy=None, mm=None, dd=None, stationId=None, filename=None):
     with open('data.json', 'w') as f:
         json.dump(json_data, f)
 
-    requestLog = Service_Requests_Log(requestID,userid,datetime.datetime.now(),nexradUrl,"data.json","StormDetction")
-    db.session.add(requestLog)
-    db.session.commit()
+
+
+    #requestLog = Service_Requests_Log(requestID,userid,datetime.datetime.now(),nexradUrl,"data.json","StormDetction")
+    #db.session.add(requestLog)
+    #db.session.commit()
+
+
 
     return jsonify(results=list)
 
 if __name__ == '__main__':
     app.run(
-        host="0.0.0.0",
+        #host="0.0.0.0",
         #port=int(5000),
         #debug=True
     )
