@@ -50,8 +50,6 @@ def stormClustering():
 
     list =   {'param': 'byteStream',   'cluster': "dummy clusters"}
 
-
-
     requestLog = Service_Requests_Log(requestId,userId, datetime.datetime.now(),"data.json","clustering","StormClustering")
     db.session.add(requestLog)
     db.session.commit()
