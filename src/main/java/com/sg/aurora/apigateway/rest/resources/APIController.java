@@ -40,6 +40,7 @@ public class APIController {
   		int userId = (Integer)session.getAttribute("USERID");
   		RequestService requestService = new RequestService();
   		int requestId = requestService.generateUserRequest(userId);
+		UriBuilder builder = UriBuilder.fromPath(request.getContextPath());
 		if(requestId != -1){
 			try {
 				String dataIngestorHost = properties.readPropertiesFile("dataIngestor.host");
@@ -72,11 +73,18 @@ public class APIController {
 				String forecastTriggerServiceURL = forecastTriggerHost+":"+forecastTriggerPort+"/forecasttrigger/detected/storm";
 				ClusterData responseFromForecastTrigger = executeAndGetForecastTriggerResponse(forecastTriggerServiceURL, clusterData);
 				System.out.println("Does STORM Exists :: " + responseFromForecastTrigger.isStormExists());
-		
+				if(responseFromForecastTrigger.isStormExists()){
+					builder.path("/jsp/stormexist.jsp");
+				}
+				else
+				{
+					builder.path("/jsp/stormnotexist.jsp");
+				}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		}
+		return Response.seeOther(builder.build()).build();
     }
   
   	public String executeAndGetDataIngestorResponse( String incomingURL, URLFormData urlFormData) {
