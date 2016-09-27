@@ -7,7 +7,6 @@ mkdir -p stormdetector
 cp /home/ec2-user/appspec.yml ./stormdetector/appspec.yml
 cp -R /home/ec2-user/StormDetector ./stormdetector/StormDetector
 
-
 cd ./stormdetector
 
 echo 'Activating virtualenv for StormDetection Microservice' >> /var/log/sga-teamaurora-StormDetection-install.log
