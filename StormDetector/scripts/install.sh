@@ -17,6 +17,7 @@ source env/bin/activate >> /var/log/sga-teamaurora-StormDetection-install.log
 pip install Flask >> /var/log/sga-teamaurora-StormDetection-install.log
 pip install nose >> /var/log/sga-teamaurora-StormDetection-install.log
 pip install BeautifulSoup4 >> /var/log/sga-teamaurora-StormDetection-install.log
+pip install bs4 >> /var/log/sga-teamaurora-StormDetection-install.log
 pip install Flask-SQLAlchemy >> /var/log/sga-teamaurora-StormDetection-install.log
 #echo 'Running Flask Server' >> /var/log/sga-teamaurora-flask-install.log
 export FLASK_APP=StormDetection.py
