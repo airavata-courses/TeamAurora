@@ -10,7 +10,7 @@ cp -R /home/ec2-user/StormDetector ./stormdetector/StormDetector
 cd ./stormdetector
 
 echo 'Activating virtualenv for StormDetection Microservice' >> /var/log/sga-teamaurora-StormDetection-install.log
-pip install -r requirements.txt >>  /var/log/sga-teamaurora-StormDetection-install.log
+pip install -r /home/ec2-user/python_libs/stormdetector/StormDetector/requirements.txt >>  /var/log/sga-teamaurora-StormDetection-install.log
 pip install virtualenv >> /var/log/sga-teamaurora-StormDetection-install.log
 virtualenv env >> /var/log/sga-teamaurora-StormDetection-install.log
 source env/bin/activate >> /var/log/sga-teamaurora-StormDetection-install.log
