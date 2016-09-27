@@ -1,5 +1,14 @@
 echo 'starting installation process' >> /var/log/sga-teamaurora-StormDetection-install.log
-cd '/home/ec2-user/StormDetection'
+cd /home/ec2-user
+mkdir -p python_libs
+cd python_libs
+mkdir -p stormdetector
+
+cp /home/ec2-user/appspec.yml ./stormdetector/appspec.yml
+cp -R /home/ec2-user/StormDetector ./stormdetector/StormDetector
+
+
+cd ./stormdetector
 
 echo 'Activating virtualenv for StormDetection Microservice' >> /var/log/sga-teamaurora-StormDetection-install.log
 pip install virtualenv >> /var/log/sga-teamaurora-StormDetection-install.log
