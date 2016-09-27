@@ -80,19 +80,22 @@ public class APIController {
     }
   
   	public String executeAndGetDataIngestorResponse( String incomingURL, URLFormData urlFormData) {
-	  	Client client = ClientBuilder.newClient();
+	  	System.out.println("Call to executeAndGetDataIngestorResponse :: " + incomingURL);
+		Client client = ClientBuilder.newClient();
 		Response response = client.target(incomingURL).request().post(Entity.json(urlFormData));
 		return response.readEntity(String.class);		
   	}
   	
   	public String executeAndGetStormDetectorResponse(String incomingURL, JSONObject responseFromDataIngestorJSON) {
-  	  Client client = ClientBuilder.newClient();
+  	  System.out.println("Call to executeAndGetStormDetectorResponse :: " + incomingURL);
+	  Client client = ClientBuilder.newClient();
 	  Response response = client.target(incomingURL).request().post(Entity.json(responseFromDataIngestorJSON.toString()));
 	  System.out.println("Status of call to Storm Detector :: " + response.getStatus());
 	  return response.readEntity(String.class);
     }	
 	
   	public String executeAndGetStormClusterringResponse( String incomingURL, JSONObject responseFromStormDetectorJSON) {
+	  System.out.println("Call to executeAndGetStormClusterringResponse :: " + incomingURL);
 	  Client client = ClientBuilder.newClient();
   	  Response response = client.target(incomingURL).request().post(Entity.json(responseFromStormDetectorJSON.toString()));
   	  System.out.println("Status of call to Storm Detector :: " + response.getStatus());
@@ -100,7 +103,8 @@ public class APIController {
     }
   	
   	public ClusterData executeAndGetForecastTriggerResponse(String incomingURL, ClusterData clusterData) {
-	  	Client client = ClientBuilder.newClient();
+	  	System.out.println("Call to executeAndGetForecastTriggerResponse :: " + incomingURL);
+		Client client = ClientBuilder.newClient();
 		Response response = client.target(incomingURL).request().post(Entity.json(clusterData));
 		return response.readEntity(ClusterData.class);
   	}
