@@ -1,14 +1,12 @@
 
-language: java
+language: python
 
-jdk:
-  - oraclejdk8
-
+python:
+  - "3.4"
 
 install: pip install -r StormClustering/requirements.txt
 
 before_script:
-  - npm install python  
   - pip install virtualenv
   - cd StormClustering
   - virtualenv env
@@ -16,11 +14,9 @@ before_script:
   - pip install nose
   - pip install BeautifulSoup4
   - pip install Flask-SQLAlchemy
-  -  install python
 
 script: nosetests StormClustering.py
 
-before_install: cd STORM_CLUSTERING
 
 before_deploy:
   - cd ..
@@ -39,7 +35,7 @@ deploy:
     acl: public_read
     detect_encoding: true
     on: 
-      branch: Milestone_1
+      branch: feature-StormClustering
       
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY_ID
@@ -51,7 +47,7 @@ deploy:
     deployment_group: TeamAurora
     region: us-west-2
     on:
-      branch: Milestone_1
+      branch: feature-StormClustering
       
 
 after_deploy:
@@ -61,3 +57,4 @@ after_deploy:
 notifications:
   email:
     - sriksrin@iu.edu
+    
