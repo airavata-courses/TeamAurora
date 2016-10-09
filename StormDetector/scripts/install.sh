@@ -16,7 +16,7 @@ sudo alternatives --set python /usr/bin/python3.4
 echo 'Activating virtualenv for StormDetection Microservice' 
 pip-3.4 install -r /home/ec2-user/python_libs/stormdetector/StormDetector/requirements.txt 
 pip-3.4 install virtualenv
-cd StormDetector
+#cd StormDetector
 virtualenv env
 source env/bin/activate
 pip-3.4 install Flask
