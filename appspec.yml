@@ -2,8 +2,8 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user
-hooks:
+    destination: /home/ec2-user/python_libs/stormdetector
+
   BeforeInstall:
     - location: StormDetector/scripts/before-install.sh
       timeout: 3600
