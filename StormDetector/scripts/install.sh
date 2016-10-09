@@ -9,12 +9,12 @@ cp -R /home/ec2-user/StormDetector ./stormdetector
 
 cd ./stormdetector
 
-sudo yum -y install python34
-sudo yum -y install python34-pip
-sudo alternatives --set python /usr/bin/python3.4
+#sudo yum -y install python34
+#sudo yum -y install python34-pip
+#sudo alternatives --set python /usr/bin/python3.4
 
 echo 'Activating virtualenv for StormDetection Microservice' 
-pip-3.4 install -r /home/ec2-user/python_libs/stormdetector/StormDetector/requirements.txt 
+#pip-3.4 install -r /home/ec2-user/python_libs/stormdetector/StormDetector/requirements.txt 
 pip-3.4 install virtualenv
 #cd StormDetector
 virtualenv env
