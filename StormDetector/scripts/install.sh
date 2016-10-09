@@ -4,8 +4,8 @@ mkdir -p python_libs
 cd python_libs
 mkdir -p stormdetector
 
-sudo cp /home/ec2-user/appspec.yml ./stormdetector/appspec.yml
-sudo cp -R /home/ec2-user/StormDetector ./stormdetector
+cp /home/ec2-user/appspec.yml ./stormdetector/appspec.yml
+cp -R /home/ec2-user/StormDetector ./stormdetector
 
 cd ./stormdetector
 
