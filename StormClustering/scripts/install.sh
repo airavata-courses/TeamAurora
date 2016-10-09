@@ -9,7 +9,6 @@ cp -R /home/ec2-user/StormClustering ./stormclustering
 
 cd ./stormclustering
 
-
 echo 'Activating virtualenv for StormClustering Microservice' >> /var/log/sga-teamaurora-StormClustering-install.log
 pip-3.4 install virtualenv >> /var/log/sga-teamaurora-StormClustering-install.log
 virtualenv env >> /var/log/sga-teamaurora-StormClustering-install.log
