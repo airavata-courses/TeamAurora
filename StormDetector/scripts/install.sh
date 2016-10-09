@@ -1,26 +1,30 @@
-echo 'starting installation process' >> /var/log/sga-teamaurora-StormDetection-install.log
+echo 'starting installation process'
 cd /home/ec2-user
 mkdir -p python_libs
 cd python_libs
 mkdir -p stormdetector
 
-cp /home/ec2-user/appspec.yml ./stormdetector/appspec.yml
-cp -R /home/ec2-user/StormDetector ./stormdetector/StormDetector
+sudo cp /home/ec2-user/appspec.yml ./stormdetector/appspec.yml
+sudo cp -R /home/ec2-user/StormDetector ./stormdetector/StormDetector
 
 cd ./stormdetector
 
+sudo yum -y install python34
+sudo yum -y install python34-pip
+sudo alternatives --set python /usr/bin/python3.4
+
 echo 'Activating virtualenv for StormDetection Microservice' 
-pip install -r /home/ec2-user/python_libs/stormdetector/StormDetector/requirements.txt 
-pip install virtualenv
+pip-3.4 install -r /home/ec2-user/python_libs/stormdetector/StormDetector/requirements.txt 
+pip-3.4 install virtualenv
 cd StormDetector
 virtualenv env
 source env/bin/activate
-pip install Flask
-pip install nose
-pip install BeautifulSoup4
-pip install bs4
-pip install Flask-SQLAlchemy
-#echo 'Running Flask Server' >> /var/log/sga-teamaurora-flask-install.log
-export FLASK_APP=StormDetection.py
-flask run --host=0.0.0.0 --port=5000 >> /var/log/sga-teamaurora-StormDetection-server.log 2>&1 &
+pip-3.4 install Flask
+pip-3.4 install nose
+pip-3.4 install BeautifulSoup4
+pip-3.4 install bs4
+pip-3.4 install Flask-SQLAlchemy
+echo 'Running Flask Server' >> /var/log/sga-teamaurora-flask-install.log
+#export FLASK_APP=StormDetection.py
+#flask run --host=0.0.0.0 --port=5000 >> /var/log/sga-teamaurora-StormDetection-server.log 2>&1 &
 python StormDetection.py >> /var/log/sga-teamaurora-StormDetection-server.log 2>&1 &
