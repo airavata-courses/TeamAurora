@@ -5,7 +5,7 @@ cd python_libs
 mkdir -p stormdetector
 
 sudo cp /home/ec2-user/appspec.yml ./stormdetector/appspec.yml
-sudo cp -R /home/ec2-user/StormDetector ./stormdetector/StormDetector
+sudo cp -R /home/ec2-user/StormDetector ./stormdetector
 
 cd ./stormdetector
 
