@@ -20,5 +20,6 @@ pip-3.4 install Flask-SQLAlchemy >> /var/log/sga-teamaurora-StormClustering-inst
 pip-3.4 install bs4
 #export FLASK_APP=StormClustering.py
 #flask run --host=0.0.0.0 --port=5000 >> /var/log/sga-teamaurora-StormClustering-server.log 2>&1 &
+echo 'running StormClustering'
 python3 StormClustering/StormClustering.py
 
