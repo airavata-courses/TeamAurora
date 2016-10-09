@@ -29,6 +29,6 @@ echo 'Running Flask Server' >> /var/log/sga-teamaurora-flask-install1.log
 #flask run --host=0.0.0.0 --port=5000 >> /var/log/sga-teamaurora-StormDetection-server.log 2>&1 &
 
 echo 'starting Storm Detection'
-pwd >> /var/log/sga-teamaurora-StormDetection-server1.log
-ls -la >> /var/log/sga-teamaurora-StormDetection-server1.log
-python3 ./StormDetector/StormDetector.py >> /var/log/sga-teamaurora-StormDetection-server1.log 2>&1 &
+#pwd >> /var/log/sga-teamaurora-StormDetection-server1.log
+#ls -la >> /var/log/sga-teamaurora-StormDetection-server1.log
+python3 ./StormDetector/stormDetector.py >> /var/log/sga-teamaurora-StormDetection-server1.log 2>&1 &
