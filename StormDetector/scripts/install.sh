@@ -27,5 +27,6 @@ pip-3.4 install Flask-SQLAlchemy
 echo 'Running Flask Server' >> /var/log/sga-teamaurora-flask-install.log
 #export FLASK_APP=StormDetection.py
 #flask run --host=0.0.0.0 --port=5000 >> /var/log/sga-teamaurora-StormDetection-server.log 2>&1 &
+
 echo 'starting Storm Detection'
 python StormDetection.py >> /var/log/sga-teamaurora-StormDetection-server.log 2>&1 &
