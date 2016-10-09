@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/python_libs/stormdetector
+    destination: /home/ec2-user
 
   BeforeInstall:
     - location: StormDetector/scripts/before-install.sh
