@@ -7,7 +7,6 @@ mkdir -p stormclustering
 cp /home/ec2-user/appspec.yml ./stormclustering/appspec.yml
 cp -R /home/ec2-user/StormClustering ./stormclustering
 
-
 cd ./stormclustering
 
 echo 'Activating virtualenv for StormClustering Microservice' >> /var/log/sga-teamaurora-StormClustering-install.log
