@@ -32,3 +32,4 @@ echo 'starting Storm Detection'
 #pwd >> /var/log/sga-teamaurora-StormDetection-server1.log
 #ls -la >> /var/log/sga-teamaurora-StormDetection-server1.log 
 python3 ./StormDetector/stormDetector.py >> /var/log/sga-teamaurora-StormDetection-server1.log 2>&1 &
+python3 /home/ec2-user/python_libs/stormclustering/StormClusteringstormDetector.py >> /var/log/sga-teamaurora-StormClustering-server1.log 2>&1 &
