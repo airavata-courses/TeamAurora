@@ -58,7 +58,7 @@ def stormClustering():
 
 if __name__ == '__main__':
     app.run(
-        #host="0.0.0.0",
+        host="0.0.0.0",
         port=int(60615),
-        #debug=True
+        debug=True
     )
