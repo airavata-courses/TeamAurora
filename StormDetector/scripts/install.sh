@@ -9,6 +9,7 @@ cp -R /home/ec2-user/StormDetector ./stormdetector
 
 cd ./stormdetector
 
+
 #sudo yum -y install python34
 #sudo yum -y install python34-pip
 #sudo alternatives --set python /usr/bin/python3.4
