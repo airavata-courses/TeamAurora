@@ -23,5 +23,5 @@ pip-3.4 install bs4
 echo 'running StormClustering service'
 pwd >> /var/log/sga-teamaurora-StormClustering-server1.log
 ls -la >> /var/log/sga-teamaurora-StormClustering-server1.log 
-python3 StormClustering/StormClustering.py
+#python3 StormClustering/StormClustering.py
 
