@@ -23,4 +23,4 @@ mkdir -p $(date +%m%d%Y)
 cd $(date +%m%d%Y)
 
 cp /home/ec2-user/appspec.yml .
-cp -R /home/ec2-user/api_gateway/apigateway.war .
+cp -R /home/ec2-user/api_gateway/ .
