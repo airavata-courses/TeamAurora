@@ -11,6 +11,6 @@ cd stormclustering/StormClustering/
 pip3 install -r requirements.txt
 
 docker build -t stormclustering .
-docker run stormclustering
+docker run stormclustering &
 #python3 StormClustering/StormClustering.py
 
