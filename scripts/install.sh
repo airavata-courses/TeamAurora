@@ -1,6 +1,13 @@
+echo 'Installing API Gateway' 
 
-cd /home/ec2-user/java_libs/apigateway/$(date +%m%d%Y)/api_gateway/docker/images/
+mkdir -p java_libs
+cd java_libs
+mkdir -p apigateway
 
-echo '***Building docker image. This may take some time.***'
-docker build -t apigateway .
-docker run apigateway &
+cp /home/ec2-user/appspec.yml ./apigateway/appspec.yml
+cp -R /home/ec2-user/api_gateway/apigateway.war ./apigateway/apigateway.war
+
+cp /home/ec2-user/api_gateway/apigateway.war /usr/share/tomcat8/webapps/apigateway.war
+echo 'Starting Tomcat service. This may take some time.'
+sudo service tomcat8 start
+sleep 30
