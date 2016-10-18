@@ -10,8 +10,10 @@ cd stormclustering/StormClustering/
 
 pip3 install -r requirements.txt
 
-docker build -t stormclustering .
-docker run stormclustering &
+echo "Starting Docker Build" >> /var/log/sga-teamaurora-StormClustering-installM2.log
+
+docker build -t stormclustering .  >> /var/log/sga-teamaurora-StormClustering-serverM2.log
+docker run stormclustering & >> /var/log/sga-teamaurora-StormClustering-serverM2.log
 #python3 StormClustering/StormClustering.py
 
 
