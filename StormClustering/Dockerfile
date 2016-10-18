@@ -1,2 +1,2 @@
 FROM python:3-onbuild
-CMD ["python", "StormClustering.py"]
+CMD ["python3", "StormClustering.py"]
