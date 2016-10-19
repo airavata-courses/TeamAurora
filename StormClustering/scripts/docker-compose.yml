@@ -1,0 +1,7 @@
+version: '2'
+services:
+  stormclustering:
+    image: python3-onbuild
+    build: ./stormclustering/StormClustering/Dockerfile
+    ports:
+     - "60622:60615"
