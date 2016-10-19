@@ -12,9 +12,9 @@ pip3 install -r requirements.txt
 
 echo "Starting Docker Build" >> /var/log/SGATeamAuroraMileStone2/sga-teamaurora-StormClustering-installM2.log
 
-docker rm $(docker ps -a -q)
+docker rm -f $(docker ps -a)
 docker build -t stormclustering .  >> /var/log/SGATeamAuroraMileStone2/sga-teamaurora-StormClustering-serverM2.log
-docker run -p 60620:60615 stormclustering  >> /var/log/SGATeamAuroraMileStone2/sga-teamaurora-StormClustering-serverM2.log
+docker run -p 60621:60615 stormclustering  >> /var/log/SGATeamAuroraMileStone2/sga-teamaurora-StormClustering-serverM2.log
 #python3 StormClustering/StormClustering.py
 
 
