@@ -8,12 +8,12 @@ cp /home/ec2-user/appspec.yml ./stormclustering/appspec.yml
 cp -R /home/ec2-user/StormClustering ./stormclustering
 cd stormclustering/StormClustering/
 
-pip3 install -r requirements.txt
+usr/local/bin/pip3 install -r requirements.txt
 
 echo "Starting Docker Build" >> /var/log/SGATeamAuroraMileStone2/sga-teamaurora-StormClustering-installM2.log
 
 cd ../../
 #docker run -p 60623:60615 stormclustering  >> /var/log/SGATeamAuroraMileStone2/sga-teamaurora-StormClustering-serverM2.log
 #python3 StormClustering/StormClustering.py
-docker-compose up -d >> /var/log/SGATeamAuroraMileStone2/sga-teamaurora-StormClustering-serverM2.log
+/usr/local/bin/docker-compose up -d >> /var/log/SGATeamAuroraMileStone2/sga-teamaurora-StormClustering-serverM2.log
 
