@@ -24,16 +24,3 @@ if [ "$?" -ne 0 ]; then
 	curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 	chmod +x /usr/local/bin/docker-compose
 fi
-
-echo 'Copying artifacts to backup directory.'
-cd /home/ec2-user
-sudo mkdir -p java_libs
-cd java_libs
-sudo mkdir -p apigateway
-cd apigateway
-sudo mkdir -p $(date +%m%d%Y)
-cd $(date +%m%d%Y)
-
-cp /home/ec2-user/appspec.yml .
-cp -R /home/ec2-user/api_gateway/ .
-cp ../../apigateway.war .
