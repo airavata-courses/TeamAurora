@@ -5,3 +5,5 @@ sleep 5
 #docker rm -f ec2user_stormdetector_1
 
 #chmod 777 /home/ec2-user/StormDetector/scripts/install.sh
+cd /home/ec2-user/python_libs/stormdetector/StormDtector/
+docker build -t stormdetector .
