@@ -32,7 +32,7 @@ echo 'Running Flask Server' >> /var/log/sga-teamaurora-flask-install1.log
 echo 'starting Storm Detection'
 
 
-docker run --name stormdetector1 -p 60623:60608 stormdetector  >> /var/log/SGATeamAuroraMileStone2/stormdetectorDockerRun.log
+docker run --name stormdetector1 -p 60623:60608 stormdetector -d >> /var/log/SGATeamAuroraMileStone2/stormdetectorDockerRun.log
 
 #cd ../
 #pwd
