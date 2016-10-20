@@ -33,8 +33,8 @@ echo 'starting Storm Detection'
 
 
 cd ../
-pwd
-ls
+#pwd
+#ls
 /usr/local/bin/docker-compose up -d >> /var/log/SGATeamAuroraMileStone2/sga-teamaurora-StormDetector-serverM2.log
 #pwd >> /var/log/sga-teamaurora-StormDetection-server1.log
 #ls -la >> /var/log/sga-teamaurora-StormDetection-server1.log 
