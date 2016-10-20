@@ -9,6 +9,7 @@ before_deploy:
   - mkdir -p data_ingestor
   - cp  ./target/dataingestor.war ./data_ingestor/dataingestor.war
   - cp -R ./scripts ./data_ingestor/scripts
+  - cp -R ./docker api_gateway/docker
   - zip -r SGA_TeamAurora_DataIngestor.zip data_ingestor appspec.yml || true
   - mkdir -p "uploadLibs"
   - mv SGA_TeamAurora_DataIngestor.zip uploadLibs/SGA_TeamAurora_DataIngestor.zip || true
