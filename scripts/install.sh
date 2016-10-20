@@ -16,5 +16,5 @@ cd /home/ec2-user/java_libs/dataingestor/$(date +%m%d%Y)/data_ingestor/docker/im
 
 echo '***Building docker image. This may take some time.***'
 docker build -t img_dataingestor .
-docker run -p 8081:8080 --name dataingestor -d img_dataingestor
+docker run -p 8082:8080 --name dataingestor -d img_dataingestor
 echo '***Docker container started.***'
