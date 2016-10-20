@@ -10,29 +10,10 @@ cp -R /home/ec2-user/StormDetector ./stormdetector
 cd ./stormdetector
 
 
-#sudo yum -y install python34
-#sudo yum -y install python34-pip
-#sudo alternatives --set python /usr/bin/python3.4
 
-echo 'installing req.txt StormDetection Microservice' 
-/usr/local/bin/pip3 install -r /home/ec2-user/python_libs/stormdetector/StormDetector/requirements.txt 
-#usr/local/bin/pip-3.4 install virtualenv
-#cd StormDetector
-#virtualenv env
-#source env/bin/activate
-/usr/local/bin/pip3 install Flask
-/usr/local/bin/pip3 install nose
-/usr/local/bin/pip3 install BeautifulSoup4
-/usr/local/bin/pip3 install bs4
-/usr/local/bin/pip3 install Flask-SQLAlchemy
-echo 'Running Flask Server' >> /var/log/sga-teamaurora-flask-install1.log
-#export FLASK_APP=StormDetection.py
-#flask run --host=0.0.0.0 --port=5000 >> /var/log/sga-teamaurora-StormDetection-server.log 2>&1 &
+echo 'starting Storm Detection' >> /var/log/SGATeamAuroraMileStone2/stormdetectorDockerRun.log
 
-echo 'starting Storm Detection'
-
-
-docker run --name stormdetector1 -p 60623:60608 stormdetector -d >> /var/log/SGATeamAuroraMileStone2/stormdetectorDockerRun.log
+docker run --name stormdetector1 -p 60623:60608 -d stormdetector >> /var/log/SGATeamAuroraMileStone2/stormdetectorDockerRun.log
 
 #cd ../
 #pwd
