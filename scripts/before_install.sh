@@ -25,5 +25,4 @@ if [ "$?" -ne 0 ]; then
 	chmod +x /usr/local/bin/docker-compose
 fi
 
-docker stop apigateway
-docker rm -f apigateway
+docker ps -a | grep 'apigateway' | awk '{print $1}' | xargs --no-run-if-empty docker rm
