@@ -13,7 +13,7 @@ cd ./stormdetector
 
 echo 'starting Storm Detection' >> /var/log/SGATeamAuroraMileStone2/stormdetectorDockerRun.log
 
-docker run --name stormdetector1 -p 60623:60608 -d stormdetector >> /var/log/SGATeamAuroraMileStone2/stormdetectorDockerRun.log
+docker run --name stormdetector1 -p 60623:60608 -d stormdetector & >> /var/log/SGATeamAuroraMileStone2/stormdetectorDockerRun.log
 
 #cd ../
 #pwd
