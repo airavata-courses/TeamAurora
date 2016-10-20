@@ -16,4 +16,4 @@ cd /home/ec2-user/java_libs/apigateway/$(date +%m%d%Y)/api_gateway/docker/images
 echo '***Building docker image. This may take some time.***'
 docker build -t img_apigateway .
 docker run -p 8081:8080 --name apigateway -d img_apigateway
-sleep 10
+echo '***Docker container started.***'
