@@ -5,7 +5,7 @@
 pwd >> /var/log/SGATeamAuroraMileStone2/sga-teamaurora-StormClustering-beforeInstallM2.log
 cd /home/ec2-user/python_libs/stormclustering/StormClustering/
 
-docker stop stormclustering1
-docker rm -f stormclustering1
+docker ps -a | grep 'stormclustering' | awk '{print $1}' | xargs --no-run-if-empty docker stop
+docker ps -a | grep 'stormclustering' | awk '{print $1}' | xargs --no-run-if-empty docker rm
 
 docker build -t stormclustering .  >> /var/log/SGATeamAuroraMileStone2/sga-teamaurora-StormClustering-serverM2.log
