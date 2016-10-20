@@ -8,7 +8,7 @@ cp /home/ec2-user/appspec.yml ./stormclustering/appspec.yml
 cp -R /home/ec2-user/StormClustering ./stormclustering
 cd stormclustering/StormClustering/
 
-usr/local/bin/pip3 install -r requirements.txt
+
 
 echo "Starting Docker Build" >> /var/log/SGATeamAuroraMileStone2/sga-teamaurora-StormClustering-installM2.log
 
