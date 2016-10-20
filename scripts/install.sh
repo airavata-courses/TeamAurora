@@ -9,10 +9,11 @@ cd $(date +%m%d%Y)
 
 cp /home/ec2-user/appspec.yml .
 cp -R /home/ec2-user/api_gateway/ .
-cp ../../apigateway.war .
+sudo cp /home/ec2-user/api_gateway/apigateway.war ./api_gateway/docker/images/.
 
 cd /home/ec2-user/java_libs/apigateway/$(date +%m%d%Y)/api_gateway/docker/images/
 
 echo '***Building docker image. This may take some time.***'
-docker build -t apigateway .
-docker run apigateway &
+docker build -t img_apigateway .
+docker run -p 8081:8080 --name apigateway -d img_apigateway
+sleep 10

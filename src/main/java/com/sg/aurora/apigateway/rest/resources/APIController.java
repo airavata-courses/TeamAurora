@@ -136,4 +136,10 @@ public class APIController {
 	return Response.seeOther(targetURIForRedirection).build();
   }
   
+  @GET
+  @Produces(MediaType.TEXT_PLAIN)
+  public String sayPlainTextHello() {
+    return "Hello Jersey";
+  }
+  
 }
