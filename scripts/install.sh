@@ -16,5 +16,5 @@ cd /home/ec2-user/java_libs/forecasttrigger/$(date +%m%d%Y)/forecast_trigger/doc
 
 echo '***Building docker image. This may take some time.***'
 docker build -t img_forecasttrigger .
-docker run -p 8082:8080 --name forecasttrigger -d img_forecasttrigger
+docker run -p 8083:8080 --name forecasttrigger -d img_forecasttrigger
 echo '***Docker container started.***'
