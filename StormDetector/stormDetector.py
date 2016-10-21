@@ -59,7 +59,7 @@ def stormDetector(yy=None, mm=None, dd=None, stationId=None, filename=None):
 
     kmlStream = ""
 
-    with open('/home/ec2-user/python_libs/stormdetector/StormDetector/KML_Samples.kml', 'r') as f:
+    with open('KML_Samples.kml', 'r') as f:
         kmlStream += str(f.readlines())
 
 
