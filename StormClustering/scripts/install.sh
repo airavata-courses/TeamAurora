@@ -8,9 +8,12 @@ cp /home/ec2-user/appspec.yml ./stormclustering/appspec.yml
 cp -R /home/ec2-user/StormClustering ./stormclustering
 cd stormclustering/StormClustering/
 
+docker ps -a | grep 'stormclustering' | awk '{print $1}' | xargs --no-run-if-empty docker stop
+docker ps -a | grep 'stormclustering' | awk '{print $1}' | xargs --no-run-if-empty docker rm
 
+docker build -t stormclustering .  >> /var/log/SGATeamAuroraMileStone2/sga-teamaurora-StormClustering-serverM2.log
 
-echo "Starting Docker Build" >> /var/log/SGATeamAuroraMileStone2/sga-teamaurora-StormClustering-installM2.log
+echo "Starting Docker run" >> /var/log/SGATeamAuroraMileStone2/sga-teamaurora-StormClustering-installM2.log
 
 docker run --name stormclustering1 -p 60622:60615 -d stormclustering &  >> /var/log/SGATeamAuroraMileStone2/sga-teamaurora-StormClustering-serverM2.log
 #python3 StormClustering/StormClustering.py
