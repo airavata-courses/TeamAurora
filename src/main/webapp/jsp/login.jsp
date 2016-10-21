@@ -8,7 +8,7 @@
 		
 		<!-- Latest compiled JavaScript -->
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<meta name="google-signin-client_id" content="758193546502-npj4ptehrnumf6h6s04vfim48i5j2j7p.apps.googleusercontent.com">
+		<meta name="google-signin-client_id" content="937677442947-5u4q4ini5kgnl62m3brpp3lendn6fupd.apps.googleusercontent.com">
 <script src="jquery.min.js"></script>
 <script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
 <script>
