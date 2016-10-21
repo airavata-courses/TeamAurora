@@ -7,8 +7,13 @@ mkdir -p stormdetector
 cp /home/ec2-user/appspec.yml ./stormdetector/appspec.yml
 cp -R /home/ec2-user/StormDetector ./stormdetector
 
-cd ./stormdetector
+cd ./stormdetector/StormDetector/
 
+docker ps -a | grep 'stormdetector' | awk '{print $1}' | xargs --no-run-if-empty docker stop
+docker ps -a | grep 'stormdetector' | awk '{print $1}' | xargs --no-run-if-empty docker rm
+
+
+docker build -t stormdetector .
 
 
 echo 'starting Storm Detection' >> /var/log/SGATeamAuroraMileStone2/stormdetectorDockerRun.log
