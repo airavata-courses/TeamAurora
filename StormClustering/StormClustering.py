@@ -39,12 +39,23 @@ def stormClustering():
     data = request.json
 
     kmlStream = str(data['results']['val'])
+
+
+    f = 1
+
+    for i in range(50):
+        f = f*i 
+
     #userId = str(data['userId'])
     #requestId = str(data['requestId'])
-
-    with open('test.txt' , 'w') as f:
-        f.write(str(kmlStream))
-
+    
+    for i in range(500):
+        with open('test.txt' , 'w') as f:
+            f.write(str(kmlStream))
+	
+    
+    
+	
 
     responseCode = 200
 
