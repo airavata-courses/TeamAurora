@@ -16,9 +16,9 @@ docker ps -a | grep 'stormdetector' | awk '{print $1}' | xargs --no-run-if-empty
 docker build -t stormdetector .
 
 
-echo 'starting Storm Detection' >> /var/log/SGATeamAuroraMileStone2/stormdetectorDockerRun.log
+echo 'starting Storm Detection'
 
-docker run --name stormdetector1 -p 60623:60608 -d stormdetector & >> /var/log/SGATeamAuroraMileStone2/stormdetectorDockerRun.log
+docker run --name stormdetector1 -p 60623:60608 -d stormdetector &
 
 #cd ../
 #pwd
