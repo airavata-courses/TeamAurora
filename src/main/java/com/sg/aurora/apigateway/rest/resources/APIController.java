@@ -5,13 +5,15 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.text.ParseException;
-import javax.ws.rs.core.UriBuilder;
 
+import javax.ws.rs.core.UriBuilder;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
-import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
@@ -121,26 +123,37 @@ public class APIController {
   	
   @POST
   @Path("/login")
-  public Response validateUser(@FormParam("username") String userName, @FormParam("password") String password, @Context HttpServletRequest request) throws URISyntaxException {
+  public Response validateUser(@FormParam("google") String google, @FormParam("username") String userName, @FormParam("password") String password, @Context HttpServletRequest request, @Context HttpServletResponse response) throws URISyntaxException, IOException, ServletException {
 	UserService userService = new UserService();
 	URI targetURIForRedirection = null;
-	int userId = userService.validateUser(userName, password);
-	if(userId != -1){
+	
+	int userId =-1;
+	if(google==null)
+	{
+		
+		userId= userService.validateUser(userName, password);
+		if(userId != -1 && password!=null){
+			HttpSession session= request.getSession(true);
+			session.setAttribute("USERID", userId);
+			session.setAttribute("USERNAME", userName);
+			targetURIForRedirection = new URI(request.getContextPath()+"/jsp/client.jsp");
+		}
+		else{
+			targetURIForRedirection = new URI(request.getContextPath()+"/jsp/login.jsp");
+		}
+	}
+	else
+	{
+		RequestService reqService=new RequestService();
+		userId=userService.validateUser(userName);
+		if(userId==-1)
+			userId = userService.addGoogleUser(userName);
 		HttpSession session= request.getSession(true);
 		session.setAttribute("USERID", userId);
 		session.setAttribute("USERNAME", userName);
 		targetURIForRedirection = new URI(request.getContextPath()+"/jsp/client.jsp");
 	}
-	else{
-		targetURIForRedirection = new URI(request.getContextPath()+"/jsp/login.jsp");
-	}
 	return Response.seeOther(targetURIForRedirection).build();
-  }
-  
-  @GET
-  @Produces(MediaType.TEXT_PLAIN)
-  public String sayPlainTextHello() {
-    return "Hello Jersey";
   }
   
 }
