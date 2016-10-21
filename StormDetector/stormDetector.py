@@ -45,8 +45,8 @@ def stormDetector(yy=None, mm=None, dd=None, stationId=None, filename=None):
     apiData = request.json
 
     nexradUrl = apiData['url']
-    requestID = apiData['requestId']
-    userid = apiData['userId']
+    #requestID = apiData['requestId']
+    #userid = apiData['userId']
 
     baseUrl = 'https://noaa-nexrad-level2.s3.amazonaws.com/'
     #kmlUrl =  baseUrl + yy + '/' + mm + '/' + dd + '/' + stationId + '/' + filename
