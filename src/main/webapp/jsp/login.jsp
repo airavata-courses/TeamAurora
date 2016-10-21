@@ -46,7 +46,7 @@
         
     }
     function onFailure(error) {
-    	window.location = "http://localhost:8080/apigateway/jsp/login.jsp";
+    	window.location = "${pageContext.request.contextPath}/jsp/login.jsp";
         alert("Unable to login");
     }
  
