@@ -8,4 +8,15 @@ public class UserService {
 		UserDAO userDAO = new UserDAO();
 		return userDAO.validateUser(userName, password);
 	}
+	
+	public int validateUser(String userName) {
+		UserDAO userDAO = new UserDAO();
+		return userDAO.validateUser(userName);
+	}
+	
+	public int addGoogleUser(String username )
+	{
+		UserDAO userDAO=new UserDAO();
+		return userDAO.addGoogleUser(username);
+	}
 }
