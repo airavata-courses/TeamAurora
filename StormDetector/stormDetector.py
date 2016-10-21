@@ -38,7 +38,7 @@ class Service_Requests_Log(db.Model):
 
 @app.route('/',methods=['GET', 'POST'])
 def root_path():
-    return 'REST API to download the files from AWS Nexrad'
+    return "REST API to download the files from AWS Nexrad"
 
 
 @app.route('/StormDetector' , methods=['GET', 'POST'])
