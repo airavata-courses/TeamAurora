@@ -65,7 +65,7 @@
     </script>
     <script type="text/javascript">
       $('#datetimepicker').datetimepicker({
-        format: 'hh:mm',
+        format: 'hh:mm:ss',
 		pickDate: false,
 		pick12HourFormat: true
       });
