@@ -36,7 +36,11 @@ class Service_Requests_Log(db.Model):
     def __repr__(self):
         return self.request_id
 
-@app.route('/')
+@app.route('/',methods=['GET', 'POST'])
+def root_path():
+    return 'REST API to download the files from AWS Nexrad'
+
+
 @app.route('/StormDetector' , methods=['GET', 'POST'])
 @app.route('/noaa-nexrad-level2.s3.amazonaws.com/<yy>/<mm>/<dd>/<stationId>/<filename>', methods=['GET'])
 @app.route('/https://noaa-nexrad-level2.s3.amazonaws.com/<yy>/<mm>/<dd>/<stationId>/<filename>', methods=['GET'])
