@@ -23,3 +23,5 @@ def test_getlink_error():
     link = json.loads(response.data)['error']
     assert_equal(link,expected)
 
+
+    
