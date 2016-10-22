@@ -59,4 +59,13 @@ public class URLFormData {
 		this.time=time;
 	}
 
+	public URLFormData(String stationName, String date, String time, int userId, int requestId)
+	{
+		this.stationName=stationName;
+		this.date=date;
+		this.time=time;
+		this.userId=userId;
+		this.requestId=requestId;
+	}
+	
 }
