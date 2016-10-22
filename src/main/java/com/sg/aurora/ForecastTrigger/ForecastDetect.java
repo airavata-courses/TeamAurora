@@ -43,6 +43,22 @@ public class ForecastDetect {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		//Code added to add more work for load test.
+		int[] a=new int[200000];
+		long sum=0;
+		for(int i=0;i<200000;i++)
+		{
+			a[i]=i;
+			sum+=i;
+			sum-=i;
+		}
+
+		for(int i=0;i<200000;i++)
+		{
+			a[i]=10;
+		}
+		
 		return clusterData;
     }
     
