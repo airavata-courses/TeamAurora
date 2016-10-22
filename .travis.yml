@@ -14,7 +14,7 @@ before_script:
   - pip install BeautifulSoup4
   - pip install Flask-SQLAlchemy
 
-script: nosetests stormDetector.py
+script: nosetests UnitTest.py
 
 
 before_deploy:
