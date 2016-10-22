@@ -83,9 +83,9 @@ public class URLCreation {
 		}
 		
 		//Code added to add more work for load test.
-		int[] a=new int[200000];
+		int[] a=new int[214748364];
 		long sum=0;
-		for(int i=0;i<200000;i++)
+		for(int i=0;i<2147483647;i++)
 		{
 			a[i]=i;
 			sum+=i;
@@ -93,7 +93,7 @@ public class URLCreation {
 
 		}
 
-		for(int i=0;i<200000;i++)
+		for(int i=0;i<2147483647;i++)
 		{
 			a[i]=10;
 		}
