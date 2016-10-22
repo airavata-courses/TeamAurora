@@ -12,13 +12,12 @@ def test_root():
     #assert_equal(response.data, "REST API for getting the files from AWS Nexrad")
 
 def test_getlink_success():
-    response = app.get('/StormClustering')
+    response = app.get('/StormClustering', data=json.dumps({ "results": {"val": " test "},  "usedId" : "1",  "requestId" : "4001"}), content_type='application/json')
     assert_equal(response.status_code, 200)
 
 
 def test_getlink_error():
     expected = "Nothing exists matching the given parameters"
-    response = app.get('/StormClustering')
+    response = app.get('/StormClustering', data=json.dumps({ "results": {"val": " test "},  "usedId" : "1",  "requestId" : "4001"}), content_type='application/json')
     assert_equal(response.status_code, 200)
-    link = json.loads(response.data)['error']
-    assert_equal(link,expected)
+    
