@@ -82,21 +82,6 @@ public class URLCreation {
 			e.printStackTrace();
 		}
 		
-		//Code added to add more work for load test.
-		int[] a=new int[214748364];
-		long sum=0;
-		for(int i=0;i<214748364;i++)
-		{
-			a[i]=i;
-			sum+=i;
-			sum-=i;
-
-		}
-
-		for(int i=0;i<214748364;i++)
-		{
-			a[i]=10;
-		}
 		
 		return urlData;
 	}
