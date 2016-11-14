@@ -1,10 +1,10 @@
 import pika
 import json
-import urllib.error
-import urllib.request
-import datetime
-from bs4 import BeautifulSoup
-from flask_sqlalchemy import SQLAlchemy
+#import urllib.error
+#import urllib.request
+#import datetime
+#from bs4 import BeautifulSoup
+#from flask_sqlalchemy import SQLAlchemy
 
 
 connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))

@@ -35,6 +35,6 @@ class FibonacciRpcClient(object):
 fibonacci_rpc = FibonacciRpcClient()
 
 print(" [x] Requesting fib(url)")
-response = fibonacci_rpc.call("https://noaa-nexrad-level2.s3.amazonaws.com/2016/11/11/KABR/KABR20161111_000038_V06")
+response = fibonacci_rpc.call("{'val':'https://noaa-nexrad-level2.s3.amazonaws.com/2016/11/11/KABR/KABR20161111_000038_V06' , 'userId' : '1', 'requestId':'4001'}")
 #response = fibonacci_rpc.call( ' ' .join('google.com'))
 print(" [.] Got %r" % response)
