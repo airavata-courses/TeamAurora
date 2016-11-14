@@ -1,5 +1,8 @@
 import pika
 import json
+import psycopg2
+import sys
+import datetime
 #import urllib.error
 #import urllib.request
 #import datetime
@@ -14,11 +17,9 @@ channel.queue_declare(queue='APIGATEWAY_STORMDETECTOR_QUEUE',durable=True)
 
 
 def StormDetector(body):
+    nexradUrl = '{"val":"https://noaa-nexrad-level2.s3.amazonaws.com/2016/11/11/KABR/KABR20161111_000038_V06" , "userId" : "1", "requestId":"4001"}'
+    json_body = json.loads(nexradUrl)
 
-    nexradUrl = body
-    json_body = json.loads(body)
-
-    print(body)
 
     #response = urllib.request.urlopen(nexradUrl)
     #data = response.read()
@@ -27,18 +28,32 @@ def StormDetector(body):
     kmlStream = ""
 
     for i in range(1):
-        #print("test " + str(i))
         with open('KML_Samples.kml', 'r') as f:
             kmlStream += str(f.readlines())
 
-    #json_return_data = "klm string";
     list = {'val': 'test', 'userId' : json_body['userId'], 'requestId': json_body['requestId'] ,  'fromService':'STORMDETECTOR','toService':'APIGATEWAY'}
 
     json_str = json.dumps(list)
     #json_data = json.loads()
 
-    
+    #------------DB logging--------------------
 
+
+    conn = psycopg2.connect(database="sg_teamaurora_db", user="dbadmin", password="teamauroradbadmin", host="teamaurora-db.cfofssvi9hbo.us-west-2.rds.amazonaws.com", port="5432")
+    cur = conn.cursor()
+
+    inputData = json_body['val']
+    outputData = 'Dummy Kml File'
+    service_name = 'StormDetector'
+    user_id = json_body['userId']
+
+
+    cur.execute( "INSERT INTO service_requests_logger (request_id,timestamp,input,output, service_name,user_id) VALUES (4001, %s , %s, %s,%s, %s )", ( str(datetime.datetime.now()), inputData, outputData, service_name , user_id))
+
+    conn.commit()
+    conn.close()
+    
+    #--------End of DB logging---------------
 	
     return json_str
 
