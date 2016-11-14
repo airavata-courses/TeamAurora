@@ -8,7 +8,8 @@ install: pip install -r StormDetector/requirements.txt
 script: true
 
 before_deploy:
-  - cd ..
+  - pwd
+  - ls
   - zip -r SGA_TeamAurora_StormDetector.zip StormDetector appspec.yml || true
   - mkdir -p "dpl_cd_upload"
   - mv SGA_TeamAurora_StormDetector.zip dpl_cd_upload/SGA_TeamAurora_StormDetector.zip || true
