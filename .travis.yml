@@ -5,17 +5,7 @@ python:
 
 install: pip install -r StormDetector/requirements.txt
 
-before_script:
-  - pip install virtualenv
-  - cd StormDetector
-  - virtualenv env
-  - source env/bin/activate
-  - pip install nose
-  - pip install BeautifulSoup4
-  - pip install Flask-SQLAlchemy
-
-script: nosetests UnitTest.py
-
+script: true
 
 before_deploy:
   - cd ..
