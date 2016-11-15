@@ -3,10 +3,10 @@ import json
 import psycopg2
 import sys
 import datetime
-#import urllib.error
-#import urllib.request
-#import datetime
-#from bs4 import BeautifulSoup
+import urllib.error
+import urllib.request
+import datetime
+from bs4 import BeautifulSoup
 #from flask_sqlalchemy import SQLAlchemy
 
 
@@ -21,11 +21,15 @@ def StormDetector(body):
     json_body = json.loads(nexradUrl)
 
 
-    #response = urllib.request.urlopen(nexradUrl)
-    #data = response.read()
-    #text = BeautifulSoup(data).encode('utf-8')
+    response = urllib.request.urlopen(json_body['val'])
+    data = response.read()
+    text = BeautifulSoup(data).encode('utf-8')
 
     kmlStream = ""
+
+    for i in range(1):
+        with open('Test.txt', 'w') as f:
+            f.writelines(str(text))
 
     for i in range(1):
         with open('KML_Samples.kml', 'r') as f:
