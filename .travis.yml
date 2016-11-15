@@ -1,6 +1,8 @@
 language: java
 jdk: oraclejdk8
 
+install: mvn install:install-file -Dfile=C:\Users\Pratik\workspace\apigateway\libs\common-utils.jar -DgroupId=com.sg.aurora -DartifactId=common.utils -Dversion=1.1 -Dpackaging=jar
+
 script: mvn clean install
 
 before_deploy:
