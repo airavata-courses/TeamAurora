@@ -9,19 +9,6 @@ cp -R /home/ec2-user/StormDetector ./stormdetector
 
 cd ./stormdetector/StormDetector/
 
-sudo su
-sudo yum -y update
-sudo yum -y install yum-utils
-sudo yum -y groupinstall development
-
-sudo yum install bzip2-devel
-sudo yum -y install https://centos6.iuscommunity.org/ius-release.rpm
-yum -y install python35u-3.5.2
-yum -y install python35u-pip
-pip3.5 install --upgrade pip
-pip3.5 install pika
-yum -y install python35u-devel
-
 
 
 docker ps -a | grep 'stormdetector' | awk '{print $1}' | xargs --no-run-if-empty docker stop
