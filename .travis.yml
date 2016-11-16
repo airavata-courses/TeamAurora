@@ -27,7 +27,7 @@ deploy:
      region: us-west-2
      acl: public_read
      on:
-        branch: Feature-DataIngestor
+        branch: dataingestorworker
       
    - provider: codedeploy
      access_key_id: $AWS_ACCESS_KEY_ID # declared in Travis repo settings
@@ -39,4 +39,4 @@ deploy:
      deployment_group: TeamAurora
      region: us-west-2
      on:
-        branch: Feature-DataIngestor
+        branch: dataingestorworker
