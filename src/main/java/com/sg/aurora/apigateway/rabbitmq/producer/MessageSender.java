@@ -13,7 +13,7 @@ public class MessageSender {
 
 	public static void sendMessageToMicroServices(String message, Service toServiceName, String queueName) throws IOException, TimeoutException{
 		ConnectionFactory factory = new ConnectionFactory();
-	    factory.setHost("rabbitmqhost");
+	    factory.setHost("35.161.35.175");
 	    Connection connection = factory.newConnection();
 	    Channel channel = connection.createChannel();
 	    

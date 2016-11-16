@@ -26,7 +26,7 @@ public class MessageReceiver {
 	public static void startReceiver(){
 		
 		ConnectionFactory factory = new ConnectionFactory();
-	    factory.setHost("rabbitmqhost");
+	    factory.setHost("35.161.35.175");
 	    Connection connection;
 		try {
 			connection = factory.newConnection();		
