@@ -1,0 +1,42 @@
+language: java
+jdk: oraclejdk8
+
+install: mvn install:install-file -Dfile=./libs/common-utils.jar -DgroupId=com.sg.aurora -DartifactId=common.utils -Dversion=1.1 -Dpackaging=jar
+
+script: mvn clean compile assembly:single
+
+sudo: true
+
+before_deploy:
+  - mkdir -p data_ingestor_worker
+  - cp  ./target/dataingestorworker-1.0-jar-with-dependencies.jar ./data_ingestor_worker/dataingestorworker-1.0-jar-with-dependencies.jar
+  - cp -R ./scripts ./data_ingestor_worker/scripts
+  - cp -R ./docker data_ingestor_worker/docker
+  - zip -r SGA_TeamAurora_DataIngestorWorker.zip data_ingestor_worker appspec.yml || true
+  - mkdir -p "uploadLibs"
+  - mv SGA_TeamAurora_DataIngestorWorker.zip uploadLibs/SGA_TeamAurora_DataIngestorWorker.zip || true
+
+deploy:
+   - provider: s3
+     access_key_id: $AWS_ACCESS_KEY_ID
+     secret_access_key: $AWS_SECRET_ACCESS_KEY
+     bucket: teamaurorabucket
+     local_dir: uploadLibs
+     skip_cleanup: true
+     upload-dir: build/libs/data_ingestor_worker
+     region: us-west-2
+     acl: public_read
+     on:
+        branch: Feature-DataIngestor
+      
+   - provider: codedeploy
+     access_key_id: $AWS_ACCESS_KEY_ID # declared in Travis repo settings
+     secret_access_key: $AWS_SECRET_ACCESS_KEY
+     bucket: teamaurorabucket
+     key: build/libs/data_ingestor_worker/SGA_TeamAurora_DataIngestorWorker.zip
+     bundle_type: zip
+     application: TeamAurora
+     deployment_group: TeamAurora
+     region: us-west-2
+     on:
+        branch: Feature-DataIngestor
