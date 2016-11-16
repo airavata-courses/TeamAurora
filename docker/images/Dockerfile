@@ -1,2 +1,5 @@
 FROM java:8u102-jdk
-COPY dataingestorworker-1.0-jar-with-dependencies.jar /home/dataingestorworker-1.0-jar-with-dependencies.jar
+COPY dataingestorworker-1.0-jar-with-dependencies.jar /usr/src/dataingestorworker-1.0-jar-with-dependencies.jar
+WORKDIR /usr/src
+RUN javac Main.java
+CMD java -cp dataingestorworker-1.0-jar-with-dependencies.jar com.sg.aurora.dataingestorworker.rest.resources.DataIngestorController

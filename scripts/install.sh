@@ -15,6 +15,6 @@ sudo cp /home/ec2-user/data_ingestor_worker/dataingestorworker-1.0-jar-with-depe
 cd /home/ec2-user/java_libs/dataingestorworker/$(date +%m%d%Y)/data_ingestor_worker/docker/images/
 
 echo '***Building docker image. This may take some time.***'
-#docker build -t img_dataingestorworker .
-#docker run --name dataingestorworker -d img_dataingestorworker
+docker build -t img_dataingestorworker .
+docker run --name dataingestorworker -d img_dataingestorworker
 echo '***Docker container started.***'
