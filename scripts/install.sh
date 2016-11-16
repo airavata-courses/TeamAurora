@@ -16,5 +16,5 @@ cd /home/ec2-user/java_libs/dataingestorworker/$(date +%m%d%Y)/data_ingestor_wor
 
 echo '***Building docker image. This may take some time.***'
 docker build -t img_dataingestorworker .
-docker run --name dataingestorworker --link rabbitmqserver1:rabbitmqserver1 -d img_dataingestorworker
+docker run --name dataingestorworker -d img_dataingestorworker
 echo '***Docker container started.***'
