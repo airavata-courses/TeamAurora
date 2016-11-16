@@ -23,6 +23,7 @@ yum -y install python35u-pip
 pip3.5 install --upgrade pip
 pip3.5 install pika
 pip3.5 install psycopg2
+pip3.5 install bs4
 
 yum -y install python35u-devel
 

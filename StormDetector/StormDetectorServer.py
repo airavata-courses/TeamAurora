@@ -8,11 +8,25 @@ import urllib.request
 import datetime
 from bs4 import BeautifulSoup
 #from flask_sqlalchemy import SQLAlchemy
+from amqplib import client_0_8 as amqp
 
 
-connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 
-channel = connection.channel()
+#conn = amqp.Connection(host="172.31.4.128", userid="test", password="test", virtual_host="/")
+
+#ch = conn.channel()
+
+
+print("conn done succesfully")
+
+credentials = pika.PlainCredentials('test', 'test')
+param = pika.ConnectionParameters('35.161.35.175',5672,'/',credentials,None ,None,None,None,None,3,None,100 ,None,None)
+#parameters  = pika.ConnectionParameters(host = '35.161.35.175', port = 5672, virtual_host=  '/',credentials =  credentials,socket_timeout=1,ssl=None)
+#connection = pika.BlockingConnection(parameters=parameters)
+conn  = pika.BlockingConnection(param)
+
+channel = conn.channel()
+#channel = connection.channel()
 channel.queue_declare(queue='APIGATEWAY_STORMDETECTOR_QUEUE',durable=True)
 
 
