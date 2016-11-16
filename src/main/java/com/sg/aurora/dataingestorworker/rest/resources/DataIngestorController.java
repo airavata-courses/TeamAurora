@@ -25,7 +25,7 @@ public class DataIngestorController {
 	private void startWorkerNode(){
 		
 		ConnectionFactory factory = new ConnectionFactory();
-	    factory.setHost("localhost");
+	    factory.setHost("rabbitmqhost");
 	    Connection connection;
 		try {
 			connection = factory.newConnection();
