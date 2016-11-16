@@ -13,7 +13,7 @@ public class MessageSender {
 	public static void sendMessageToAPIGateway(URLData urlData) throws IOException, TimeoutException{
 		
 		ConnectionFactory factory = new ConnectionFactory();
-	    factory.setHost("rabbitmqhost");
+	    factory.setHost("35.161.35.175");
 	    Connection connection = factory.newConnection();
 	    Channel channel = connection.createChannel();
 	    
