@@ -34,7 +34,7 @@ deploy:
     key: build/libs/api_gateway/SGA_TeamAurora_APIGateway.zip
     bundle_type: zip
     application: TeamAurora
-    deployment_group: TeamAurora
+    deployment_group: TeamAurora_HA
     region: us-west-2
     on:
       branch: feature-apigateway
