@@ -1,0 +1,43 @@
+language: java
+jdk: oraclejdk8
+
+install: mvn install:install-file -Dfile=./libs/common-utils.jar -DgroupId=com.sg.aurora -DartifactId=common.utils -Dversion=1.1 -Dpackaging=jar
+
+script: mvn clean compile assembly:single
+
+sudo: true
+
+before_deploy:
+  - mkdir -p forecast_trigger_worker
+  - cp -R ./scripts forecast_trigger_worker/scripts
+  - cp -R ./docker forecast_trigger_worker/docker
+  - cp  ./target/forecasttriggerworker-1.0-jar-with-dependencies.jar forecast_trigger_worker/forecasttriggerworker-1.0-jar-with-dependencies.jar
+  - zip -r SGA_TeamAurora_ForecastTriggerWorker.zip forecast_trigger_worker appspec.yml || true
+  - mkdir -p "uploadLibs"
+  - mv SGA_TeamAurora_ForecastTriggerWorker.zip uploadLibs/SGA_TeamAurora_ForecastTriggerWorker.zip || true
+
+deploy:
+   - provider: s3
+     access_key_id: $AWS_ACCESS_KEY_ID
+     secret_access_key: $AWS_SECRET_ACCESS_KEY
+     bucket: teamaurorabucket
+     local_dir: uploadLibs
+     skip_cleanup: true
+     upload-dir: build/libs/forecast_trigger_worker
+     region: us-west-2
+     acl: public_read
+     detect_encoding: true
+     on:
+        branch: forecasttriggerworker
+      
+   - provider: codedeploy
+     access_key_id: $AWS_ACCESS_KEY_ID # declared in Travis repo settings
+     secret_access_key: $AWS_SECRET_ACCESS_KEY
+     bucket: teamaurorabucket
+     key: build/libs/forecast_trigger_worker/SGA_TeamAurora_ForecastTrigger.zip
+     bundle_type: zip
+     application: TeamAurora
+     deployment_group: TeamAurora
+     region: us-west-2
+     on:
+        branch: forecasttriggerworker
