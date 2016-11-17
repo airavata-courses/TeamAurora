@@ -85,7 +85,7 @@ public class APIController {
 			HttpSession session= request.getSession(true);
 			session.setAttribute("USERID", userId);
 			session.setAttribute("USERNAME", userName);
-			targetURIForRedirection = new URI(request.getContextPath()+"/jsp/client.jsp");
+			targetURIForRedirection = new URI(request.getContextPath()+"/jsp/jobs.jsp");
 		}
 		else{
 			targetURIForRedirection = new URI(request.getContextPath()+"/jsp/login.jsp");
@@ -99,7 +99,7 @@ public class APIController {
 		HttpSession session= request.getSession(true);
 		session.setAttribute("USERID", userId);
 		session.setAttribute("USERNAME", userName);
-		targetURIForRedirection = new URI(request.getContextPath()+"/jsp/client.jsp");
+		targetURIForRedirection = new URI(request.getContextPath()+"/jsp/jobs.jsp");
 	}
 	return Response.seeOther(targetURIForRedirection).build();
   }
