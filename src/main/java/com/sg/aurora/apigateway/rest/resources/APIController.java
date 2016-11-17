@@ -51,7 +51,7 @@ public class APIController {
   		RequestService requestService = new RequestService();
   		int requestId = requestService.generateUserRequest(userId);
   		requestService.updateServiceStatus(requestId, "API Gateway","In Progress");
-		UriBuilder builder = UriBuilder.fromPath(request.getContextPath());
+		UriBuilder builder = UriBuilder.fromPath(request.getContextPath()+"/api/jobs.jsp");
 		if(requestId != -1){
 			try {
 				
