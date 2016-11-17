@@ -7,14 +7,17 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
+import com.sg.aurora.apigateway.util.MyProperties;
 import com.sg.aurora.common.utils.SerializerDeserializer;
 import com.sg.aurora.common.utils.Service;
 
 public class MessageSender {
 
 	public static void sendMessageToMicroServices(String message, Service toServiceName, String queueName) throws IOException, TimeoutException{
+		MyProperties properties= new MyProperties();
+		String RabbitMQhost=properties.readPropertiesFile("rabbitMQ.host");
 		ConnectionFactory factory = new ConnectionFactory();
-	    factory.setHost("35.161.35.175");
+	    factory.setHost(RabbitMQhost);
 	    Connection connection = factory.newConnection();
 	    Channel channel = connection.createChannel();
 	    //Method below handles load balancing amongst multiple containers of the same service.

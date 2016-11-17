@@ -12,6 +12,57 @@ import com.sg.aurora.apigateway.rest.model.GetStatus;
 
 public class RequestDAO {
 	
+public int updateServiceStatus(int requestId, String serviceName,String status){
+		
+		try {
+			Class.forName("org.postgresql.Driver");
+			Connection connection = DriverManager.getConnection("jdbc:postgresql://teamaurora-db.cfofssvi9hbo.us-west-2.rds.amazonaws.com:5432/sg_teamaurora_db", "dbadmin", "teamauroradbadmin");
+			
+			if (connection != null) {
+				Statement stmt = connection.createStatement();
+				String sql = "UPDATE request_master SET service_name=?, status=? WHERE request_id=?";
+				PreparedStatement preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setString(1, serviceName);
+				preparedStatement.setString(2, status);
+				preparedStatement.setInt(3, requestId);
+				preparedStatement .executeUpdate();
+				stmt.close();
+				connection.close();
+				
+			} else {
+				System.out.println("Failed to make connection!");
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return requestId;
+	}
+	
+	public int updateServiceStatus(int requestId, String serviceName){
+		
+		try {
+			Class.forName("org.postgresql.Driver");
+			Connection connection = DriverManager.getConnection("jdbc:postgresql://teamaurora-db.cfofssvi9hbo.us-west-2.rds.amazonaws.com:5432/sg_teamaurora_db", "dbadmin", "teamauroradbadmin");
+			
+			if (connection != null) {
+				Statement stmt = connection.createStatement();
+				String sql = "UPDATE request_master SET service_name=? WHERE request_id=?";
+				PreparedStatement preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setString(1, serviceName);
+				preparedStatement.setInt(2, requestId);
+				preparedStatement .executeUpdate();
+				stmt.close();
+				connection.close();
+				
+			} else {
+				System.out.println("Failed to make connection!");
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return requestId;
+	}
+	
 	public ArrayList<GetStatus> getStatus(int userId){
 		ArrayList<GetStatus> result=new ArrayList<>();
 		try {

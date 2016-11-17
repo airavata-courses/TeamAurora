@@ -16,4 +16,14 @@ public class RequestService {
 		RequestDAO requestDAO = new RequestDAO();
 		return requestDAO.getStatus(userId);
 	}
+	
+	public void updateServiceStatus(int requestId, String serviceName){
+		RequestDAO requestDAO = new RequestDAO();
+		requestDAO.updateServiceStatus(requestId,serviceName);
+	}
+	
+	public void updateServiceStatus(int requestId, String serviceName,String status){
+		RequestDAO requestDAO = new RequestDAO();
+		requestDAO.updateServiceStatus(requestId,serviceName,status);
+	}
 }
