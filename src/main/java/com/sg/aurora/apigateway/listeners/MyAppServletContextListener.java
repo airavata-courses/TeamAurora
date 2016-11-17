@@ -1,5 +1,7 @@
 package com.sg.aurora.apigateway.listeners;
 
+import java.io.IOException;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
@@ -17,6 +19,11 @@ public class MyAppServletContextListener
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
 		System.out.println("APIGATEWAY consumer started");
-		MessageReceiver.startReceiver();
+		try {
+			MessageReceiver.startReceiver();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
