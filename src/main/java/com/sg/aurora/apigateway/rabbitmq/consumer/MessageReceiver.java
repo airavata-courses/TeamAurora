@@ -111,15 +111,15 @@ public class MessageReceiver {
 		    		  if(!senderService.equals(Service.FORECASTTRIGGER)){
 		    			  MessageSender.sendMessageToMicroServices(outgoingMessageStr, receivingService, QUEUE_NAME);
 		    		  }
-		    		 
+		    		  
+				  System.out.println("Done processing the job from microservice.");
+		    	          channel.basicAck(envelope.getDeliveryTag(), false);
+				  
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		    	  finally{
-		    		  System.out.println("Done processing the job from microservice.");
-		    	      channel.basicAck(envelope.getDeliveryTag(), false);
-		    	  }
+		    	  
 		      }
 		    };
 		    boolean autoAck = false;
