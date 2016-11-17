@@ -28,7 +28,7 @@
 				<div id="navbar-header">  
 					<ul class="nav navbar-nav">
 						<li class="nav-item">
-							<a class="nav-link" href="jobs.jsp">Existing Jobs</a>
+							<a class="nav-link" href="${pageContext.request.contextPath}/api/jobs.jsp">Existing Jobs</a>
 						</li>
 						<li class="nav-item active">
 							<a class="nav-link" href="#">Create New Job<span class="sr-only">(current)</span></a>
