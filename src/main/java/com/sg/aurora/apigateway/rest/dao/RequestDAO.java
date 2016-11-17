@@ -71,7 +71,7 @@ public int updateServiceStatus(int requestId, String serviceName,String status){
 			
 			if (connection != null) {
 				Statement stmt = connection.createStatement();
-				String sql = "Select * from request_master where user_id='"+userId+"'";
+				String sql = "Select * from request_master where user_id='"+userId+"' ORDER BY request_id DESC";
 				ResultSet rs = stmt.executeQuery(sql);
 			      // iterate through the java resultset
 			      while (rs.next())

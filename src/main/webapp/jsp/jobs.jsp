@@ -1,3 +1,8 @@
+<%@page import="com.sg.aurora.apigateway.rest.model.GetStatus"%>
+<%@page import="com.sg.aurora.apigateway.rest.service.RequestService"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    import="java.util.*" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -32,7 +37,7 @@
 							<a class="nav-link" href="#">Existing Jobs<span class="sr-only">(current)</span></a>
 						</li>
 						<li class="nav-item active">
-							<a class="nav-link" href="client.jsp">Create New Job</a>
+							<a class="nav-link" href="${pageContext.request.contextPath}/jsp/client.jsp">Create New Job</a>
 						</li>
 					</ul>
 				</div>

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.sg.aurora.apigateway.rest.model.GetStatus;
 import com.sg.aurora.apigateway.rest.service.RequestService;
 
-@WebServlet("/api/View.jsp")
+@WebServlet("/api/jobs.jsp")
 public class Status extends HttpServlet{
 
   	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -22,6 +22,6 @@ public class Status extends HttpServlet{
         RequestService requestService = new RequestService();
         ArrayList<GetStatus> userRequests=requestService.getStatus(userId);
         request.setAttribute("list", userRequests);
-        getServletContext().getRequestDispatcher("/jsp/View.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/jsp/jobs.jsp").forward(request, response);
     }
 }
