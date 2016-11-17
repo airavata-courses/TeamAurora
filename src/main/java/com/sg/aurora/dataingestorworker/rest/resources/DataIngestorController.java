@@ -58,13 +58,12 @@ public class DataIngestorController {
 		    		result.setUserId(incomingMessageObj.getUserId());
 		    		result.setRequestId(incomingMessageObj.getRequestId());		    		
 		    		MessageSender.sendMessageToAPIGateway(result);
-		    		 
+		    		
+				channel.basicAck(envelope.getDeliveryTag(), false);  
+				  
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
-		    	  finally{
-		    		  channel.basicAck(envelope.getDeliveryTag(), false);
-		    	  }
+				}		    	  
 		      }
 		    };
 		    boolean autoAck = false;
