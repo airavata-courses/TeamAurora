@@ -48,6 +48,10 @@ public class DataIngestorController {
 		    		URLFormData incomingMessageObj = mapper.readValue(incomingMessageStr, URLFormData.class);
 		    		System.out.println("Message received from " + incomingMessageObj.getFromService());
 		    		
+		    		//Updating service status to DB
+		    		PostgreSQLDB postDB = new PostgreSQLDB();
+		    		postDB.updateServiceStatus(incomingMessageObj.getRequestId(), "DataIngestor");
+		    		
 		    		URLData result = getURL(incomingMessageObj);
 		    		result.setFromService(Service.DATAINGESTOR);
 		    		result.setToService(Service.APIGATEWAY);
