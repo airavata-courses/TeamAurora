@@ -15,6 +15,8 @@ import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 import com.sg.aurora.apigateway.rabbitmq.producer.MessageSender;
+import com.sg.aurora.apigateway.rest.service.RequestService;
+import com.sg.aurora.apigateway.util.MyProperties;
 import com.sg.aurora.common.utils.ClusterData;
 import com.sg.aurora.common.utils.Constants;
 import com.sg.aurora.common.utils.SerializerDeserializer;
@@ -23,10 +25,11 @@ import com.sg.aurora.common.utils.URLData;
 
 
 public class MessageReceiver {
-	public static void startReceiver(){
-		
+	public static void startReceiver() throws IOException{
+		MyProperties properties= new MyProperties();
+		String RabbitMQhost=properties.readPropertiesFile("rabbitMQ.host");
 		ConnectionFactory factory = new ConnectionFactory();
-	    factory.setHost("35.161.35.175");
+	    factory.setHost(RabbitMQhost);
 	    Connection connection;
 		try {
 			connection = factory.newConnection();		
@@ -53,9 +56,11 @@ public class MessageReceiver {
 		    		  String outgoingMessageStr = "";
 		    		  Service receivingService = Service.APIGATEWAY;
 		    		  String QUEUE_NAME="";
-		    		  
+		    		  RequestService requestService = new RequestService();
+		    		  Integer requestId= (Integer)((jsonObj.get("requestId")));
 		    		  switch(senderService){
 			    		  case DATAINGESTOR:{
+			    			  requestService.updateServiceStatus(requestId, "API Gateway after DataIngestor");
 			    			  receivingService = Service.STORMDETECTOR;
 			    			  ObjectMapper objMapper = new ObjectMapper();
 			    			  URLData incomingMessageObj = objMapper.readValue(incomingMessageStr, URLData.class);
@@ -68,6 +73,7 @@ public class MessageReceiver {
 			    			  break;
 			    		  }
 			    		  case STORMDETECTOR:{
+			    			  requestService.updateServiceStatus(requestId, "API Gateway after Storm Detector");
 			    			  receivingService = Service.STORMCLUSTERING;
 			    			  outgoingMessageStr= incomingMessageStr;
 			    			  
@@ -75,6 +81,7 @@ public class MessageReceiver {
 			    			  break;
 			    		  }
 			    		  case STORMCLUSTERING:{
+			    			  requestService.updateServiceStatus(requestId, "API Gateway after Storm Clustering");
 			    			  ObjectMapper objMapper = new ObjectMapper();
 			    			  
 			    			  
@@ -91,6 +98,7 @@ public class MessageReceiver {
 			    			  break;
 			    		  }
 			    		  case FORECASTTRIGGER:{
+			    			  requestService.updateServiceStatus(requestId, "API Gateway after Forecast Trigger","Completed");
 			    			  //QUEUE_NAME = Constants.APIGATEWAY_FORECASTTRIGGER_QUEUE;
 			    			  boolean stormExist = jsonObj.getBoolean("stormExists");
 			    			  System.out.println("Storm Exists: " + stormExist);

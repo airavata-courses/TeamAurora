@@ -50,7 +50,8 @@ public class APIController {
   		int userId = (Integer)session.getAttribute("USERID");
   		RequestService requestService = new RequestService();
   		int requestId = requestService.generateUserRequest(userId);
-		UriBuilder builder = UriBuilder.fromPath(request.getContextPath());
+  		requestService.updateServiceStatus(requestId, "API Gateway","In Progress");
+		UriBuilder builder = UriBuilder.fromPath(request.getContextPath()+"/api/jobs.jsp");
 		if(requestId != -1){
 			try {
 				
@@ -85,7 +86,7 @@ public class APIController {
 			HttpSession session= request.getSession(true);
 			session.setAttribute("USERID", userId);
 			session.setAttribute("USERNAME", userName);
-			targetURIForRedirection = new URI(request.getContextPath()+"/jsp/jobs.jsp");
+			targetURIForRedirection = new URI(request.getContextPath()+"/api/jobs.jsp");
 		}
 		else{
 			targetURIForRedirection = new URI(request.getContextPath()+"/jsp/login.jsp");
@@ -99,7 +100,7 @@ public class APIController {
 		HttpSession session= request.getSession(true);
 		session.setAttribute("USERID", userId);
 		session.setAttribute("USERNAME", userName);
-		targetURIForRedirection = new URI(request.getContextPath()+"/jsp/jobs.jsp");
+		targetURIForRedirection = new URI(request.getContextPath()+"/api/jobs.jsp");
 	}
 	return Response.seeOther(targetURIForRedirection).build();
   }
