@@ -22,7 +22,7 @@
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
 	
-		<title> Weather Forecast Jobs </title>
+		<title> Weather Forecast Jobs Details</title>
 
 		<!-- Custom styles for this template -->
 		<link href="navbar.css" rel="stylesheet">
@@ -34,7 +34,7 @@
 				<div id="navbar-header">  
 					<ul class="nav navbar-nav">
 						<li class="nav-item">
-							<a class="nav-link" href="#">Existing Jobs<span class="sr-only">(current)</span></a>
+							<a class="nav-link" href="${pageContext.request.contextPath}/api/jobs.jsp">Existing Jobs<span class="sr-only">(current)</span></a>
 						</li>
 						<li class="nav-item active">
 							<a class="nav-link" href="${pageContext.request.contextPath}/jsp/client.jsp">Create New Job</a>
@@ -42,28 +42,22 @@
 					</ul>
 				</div>
 			</nav> <!-- /navbar -->
+			
 
 			<!-- Main component for a primary marketing message or call to action -->
 			<div class="jumbotron">
 				<table width="60%" align="center" class = "table">
 					<tr bgcolor="#337ab7" align="center">
-						<td><b>Request Id</b></td>
-						<td><b>Service Name</b></td>
-						<td><b>Status</b></td>
-						<td><b>Start Time</b></td>
-						<td><b>Actions</b></td>
+						<td><b>Task Id</b></td>
+						<td><b>Task Status</b></td>
+						
 					</tr>
 					<c:forEach items="${list}" var="current">
 					<!--  <tr bgcolor="#DEB887">-->
 					<tr align="center">
-						<td>${current.requestId} </td>
-						<td>${current.serviceName} </td>
+						<td>${current.name} </td>
 						<td>${current.status} </td>
-						<td>${current.startTime} </td>
-						<td>
-							<a href="${pageContext.request.contextPath}/api/jobdetails.jsp?requestId=${current.requestId}">Jobs</a> | 
-							<a href="${pageContext.request.contextPath}/jsp/client.jsp?requestId=${current.requestId}">Resubmit</a>
-						</td>
+						
 					</tr>
 					</c:forEach>
 				</table>

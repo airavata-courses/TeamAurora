@@ -65,7 +65,14 @@
 					<option value="KAPX">KAPX</option>
 					<option value="KIND">KIND</option>
 				</select>
-			</div>		
+			</div>
+			
+			<div id="reqId" class="">
+				<span class="add-on">
+					<input name="requestId" value = "" id = "requestId" type="text" style="display:none; width:20.5%" value="" class="form-control"></input>	
+				</span>
+			</div>
+					
 			<br>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</div>
@@ -93,6 +100,30 @@
 		pick12HourFormat: true
       });
     </script>
+    
+    <script type="text/javascript">
+    $( document ).ready(function() {
+    	 $('#requestId').val(getUrlVars()["requestId"])
+    	 console.log($('#requestId').val(getUrlVars()["requestId"]))
+    });
+    
+    function getUrlVars()
+    {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+    
+    
+    </script>
+    
+    
     <script type="text/javascript">
       $('#datetimepicker1').datetimepicker({
         format: 'yyyy/MM/dd',
