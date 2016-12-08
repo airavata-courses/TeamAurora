@@ -1,7 +1,7 @@
 language: java
 jdk: oraclejdk8
 
-install: mvn install:install-file -Dfile=./libs/common-utils.jar -DgroupId=com.sg.aurora -DartifactId=common.utils -Dversion=1.1 -Dpackaging=jar
+install: mvn install:install-file -Dfile=./libs/common-utils.jar -DgroupId=com.sg.aurora -DartifactId=common.utils -Dversion=2.0 -Dpackaging=jar
 
 script: mvn clean install
 
