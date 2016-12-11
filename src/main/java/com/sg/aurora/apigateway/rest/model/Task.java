@@ -3,10 +3,20 @@ package com.sg.aurora.apigateway.rest.model;
 public class Task {
 	String name;
 	String status;
+	String host;
 	
-	public Task(String name, String status){
+	public String getHost() {
+		return host;
+	}
+
+	public void setHost(String host) {
+		this.host = host;
+	}
+
+	public Task(String name, String status, String host){
 		this.name = name;
 		this.status = status;
+		this.host = host;
 	}
 	
 	public Task(){

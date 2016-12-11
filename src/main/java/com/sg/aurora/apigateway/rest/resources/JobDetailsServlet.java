@@ -31,6 +31,7 @@ public class JobDetailsServlet  extends HttpServlet{
   		
   		JobDetailsResponseBean detailsReponse = null;
   		ArrayList<Task> result = new ArrayList<Task>();
+  		String host="";
   		try {
   			System.out.println("Inside job details servlet");
   			AuroraThriftClient client = AuroraThriftClient.getAuroraThriftClient(com.sg.aurora.common.utils.apacheaurora.utils.Constants.AURORA_SCHEDULER_PROP_FILE);
@@ -48,7 +49,16 @@ public class JobDetailsServlet  extends HttpServlet{
   			
   			for(ScheduledTask s : detailsReponse.getTasks())
   			{
-  			 	result.add(new Task(s.getAssignedTask().getTaskId(), s.getStatus().toString())); 
+  				host=s.assignedTask.slaveHost;
+  				if(host.equals("sga-mesos-slave-1"))
+  				{
+  					host="52.53.179.0";
+  				}
+  				else if(host.equals("sga-mesos-slave-2"))
+  				{
+  					host="54.215.219.32 (Links to an external site.)";
+  				}
+  			 	result.add(new Task(s.getAssignedTask().getTaskId(), s.getStatus().toString(), host)); 
   				//System.out.println( + "  " + );
   			}
   			
@@ -57,6 +67,7 @@ public class JobDetailsServlet  extends HttpServlet{
   			e.printStackTrace();
   		}
   		request.setAttribute("list", result);
+  		request.setAttribute("host", host);
   		getServletContext().getRequestDispatcher("/jsp/jobdetails.jsp").forward(request, response);
     }
 }
