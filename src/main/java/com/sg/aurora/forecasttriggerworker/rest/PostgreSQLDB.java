@@ -18,6 +18,41 @@ public class PostgreSQLDB {
 
 	MyProperties properties=new MyProperties();
 	
+	
+	public int updateServiceStatus(int requestId, String serviceName){
+		Connection connection = null;
+		try {
+			Class.forName("org.postgresql.Driver");
+			String dbHost=properties.readPropertiesFile("db.host");
+			String dbPort=properties.readPropertiesFile("db.port");
+			String dbName=properties.readPropertiesFile("db.name");
+			String dbUserName=properties.readPropertiesFile("db.username");
+			String dbPassword=properties.readPropertiesFile("db.password");
+			connection = DriverManager.getConnection(
+					"jdbc:postgresql://"+dbHost+":"+dbPort+"/"+dbName, dbUserName,
+					dbPassword);
+			
+			if (connection != null) {
+				Statement stmt = connection.createStatement();
+				String sql = "UPDATE request_master SET service_name=? WHERE request_id=?";
+				PreparedStatement preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setString(1, serviceName);
+				preparedStatement.setInt(2, requestId);
+				preparedStatement .executeUpdate();
+				stmt.close();
+				connection.close();
+				
+			} else {
+				System.out.println("Failed to make connection!");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return requestId;
+	}
+
+	
+	
 	public void loggingToDB(int user_id, int request_id,  
 			String service_name, String input, String output ) throws SQLException, IOException
 	{

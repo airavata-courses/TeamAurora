@@ -37,7 +37,7 @@ deploy:
      key: build/libs/forecast_trigger_worker/SGA_TeamAurora_ForecastTriggerWorker.zip
      bundle_type: zip
      application: TeamAurora
-     deployment_group: TeamAurora
+     deployment_group: TeamAurora_Services
      region: us-west-2
      on:
         branch: forecasttriggerworker
