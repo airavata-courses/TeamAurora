@@ -61,7 +61,7 @@
 						<td> 
 							<c:if test="${current.status == 'FINISHED'}">
 								<a href="http://${current.host}:1338/download/${current.name}/wrfoutput/Precip_total.gif">Output</a>
-								<a onclick="myFunction('${current.host}', '${current.name}' )" href="#">Output</a>
+								<a onclick="myFunction( '${current.host}', '${current.name}' )" href="#">Output</a>
 							</c:if>
 						</td>
 					</tr>
@@ -83,21 +83,19 @@
 		<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 		
 		<script>
-		function myFunction(host, name ) {
-		    alert("working");
-		    alert("check");
-		    alert("host: "+host);		    
+		function myFunction(host, taskId  ) {
+		    alert("host "+ host);
 		    alert("taskId "+ taskId);
-		    <!--
+		    
 		    $.ajax({ 
 	             type: "GET",
 	             data: {"host": host,"taskId":taskId},
-	             url: "http://localhost:9090/apigateway/api//output",
+	             url: "http://localhost:9090/apigateway/api/output",
 	             success: function(data){        
 	                alert(data);
 	             }
 	         });
-		    -->
+		    
 		}
 		
 		</script>

@@ -2,6 +2,7 @@ package com.sg.aurora.apigateway.rest.resources;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -170,27 +171,32 @@ public class APIController {
 
   @GET
   @Path("/output")
-  public Response displayGif( @Context HttpServletRequest request){
+  public String displayGif( @Context HttpServletRequest request) throws MalformedURLException{
 	  URI targetURIForRedirection = null;
 	  String host = request.getParameter("host");
 	  String taskId = request.getParameter("taskId");
-	/*
+	  System.out.println("working");
+	  System.out.println("Host: "+ host);
+	  System.out.println("TaskId: "+ taskId);
+	  System.out.println("http://"+host+":1338/download/"+taskId+"/wrfoutput/Precip_total.gif");
+	  URL website = new URL("http://"+host+":1338/download/"+taskId+"/wrfoutput/Precip_total.gif");
 	  try {
-		URL website = new URL("http://52.53.179.0:1338/download/team-aurora-devel-job_aurora_243-0-4abb707d-5817-44c7-9ef8-dda9607b8d14/wrfoutput/Precip_total.gif");
 		ReadableByteChannel rbc = Channels.newChannel(website.openStream());
 		FileOutputStream fos = new FileOutputStream("Precip_total.gif");
 		fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-		
-		targetURIForRedirection = new URI(request.getContextPath()+"/jsp/jobdetails.jsp");
+		System.out.println("Working Directory = " +
+	              System.getProperty("user.dir"));
+		rbc.close();
+		fos.close();
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
-	*/
-	ResponseBuilder rb = Response.seeOther(targetURIForRedirection);
+	
+	
 	//rb.entity("hello world");
-	rb.type("text/html");
+	
 	  //Response.seeOther(targetURIForRedirection).build();
-	return rb.build();
+	return System.getProperty("user.dir");
 	
   }
 }
