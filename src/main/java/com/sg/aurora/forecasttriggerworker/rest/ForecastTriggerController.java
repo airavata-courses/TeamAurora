@@ -148,7 +148,7 @@ public class ForecastTriggerController {
 		taskConfig.setPriority(0);
 		taskConfig.setMaxTaskFailures(1);
 		
-		Set<Resource> resourceSet = new HashSet<>();
+		Set<Resource> resourceSet = new HashSet<Resource>();
 		
 		// add numCpus
 		Resource resource = new Resource();
@@ -172,7 +172,7 @@ public class ForecastTriggerController {
 		
 		//ProcessBean proc1 = new ProcessBean("process_1", "docker run -i --volumes-from wpsgeog --volumes-from wrfinputsandy -v ~/wrfoutput:/wrfoutput --name ncarwrfsandy bigwxwrf/ncar-wrf /wrf/run-wrf", false);
 		//ProcessBean proc2 = new ProcessBean("process_2", "docker run -i --rm=true -v ~/wrfoutput:/wrfoutput --name postproc bigwxwrf/ncar-ncl", false);
-		Set<ProcessBean> processes = new HashSet<>();
+		Set<ProcessBean> processes = new HashSet<Resource>();
 		processes.add(proc1);
 		processes.add(proc2);
 		
