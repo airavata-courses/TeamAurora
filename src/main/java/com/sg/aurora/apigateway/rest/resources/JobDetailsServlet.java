@@ -56,7 +56,7 @@ public class JobDetailsServlet  extends HttpServlet{
   				}
   				else if(host.equals("sga-mesos-slave-2"))
   				{
-  					host="54.215.219.32 (Links to an external site.)";
+  					host="54.215.219.32";
   				}
   			 	result.add(new Task(s.getAssignedTask().getTaskId(), s.getStatus().toString(), host)); 
   				//System.out.println( + "  " + );
