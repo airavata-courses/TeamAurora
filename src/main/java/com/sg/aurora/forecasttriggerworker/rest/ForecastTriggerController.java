@@ -171,7 +171,7 @@ public class ForecastTriggerController {
 		//ProcessBean proc2 = new ProcessBean("process_2", "docker ps", false);
 		
 		
-		String containerName = "aurora-ncarwrfsandy-" + requestId;
+		String containerName = "aurora-ncarwrfsandy-" + requestId + Math.random() ;
 		
 		ProcessBean proc1 = new ProcessBean("process_1", "docker run -i --volumes-from wpsgeog --volumes-from wrfinputsandy -v ~/wrfoutput:/wrfoutput --name "+ containerName + " bigwxwrf/ncar-wrf /wrf/run-wrf", false);
 		ProcessBean proc2 = new ProcessBean("process_2", "docker run -i --rm=true -v ~/wrfoutput:/wrfoutput --name postproc bigwxwrf/ncar-ncl", false);
