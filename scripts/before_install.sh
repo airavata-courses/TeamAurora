@@ -1,6 +1,5 @@
 echo 'Setting environment'
 export JAVA_HOME=/usr/lib/jvm/java
-export PATH=$JAVA_HOME/jre/bin:$PATH
 echo 'Checking if MAVEN is installed'
 mvn --version
 if [ "$?" -ne 0 ]; then
