@@ -25,5 +25,5 @@ if [ "$?" -ne 0 ]; then
 	chmod +x /usr/local/bin/docker-compose
 fi
 
-docker ps -a | grep 'forecasttriggerworker' | awk '{print $1}' | xargs --no-run-if-empty docker stop
-docker ps -a | grep 'forecasttriggerworker' | awk '{print $1}' | xargs --no-run-if-empty docker rm
+#docker ps -a | grep 'forecasttriggerworker' | awk '{print $1}' | xargs --no-run-if-empty docker stop
+#docker ps -a | grep 'forecasttriggerworker' | awk '{print $1}' | xargs --no-run-if-empty docker rm
