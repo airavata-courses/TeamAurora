@@ -28,3 +28,5 @@ fi
 
 docker ps -a | grep 'forecasttriggerworker' | awk '{print $1}' | xargs --no-run-if-empty docker stop
 docker ps -a | grep 'forecasttriggerworker' | awk '{print $1}' | xargs --no-run-if-empty docker rm
+
+echo "End of script."
