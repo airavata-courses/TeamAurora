@@ -60,8 +60,9 @@
 						
 						<td> 
 							<c:if test="${current.status == 'FINISHED'}">
-								<a href="http://${current.host}:1338/download/${current.name}/wrfoutput/Precip_total.gif">Output</a>
-								<a onclick="myFunction( '${current.host}', '${current.name}' )" href="#">Output</a>
+							<img src="http://${current.host}:1338/download/${current.name}/wrfoutput/Precip_total.gif" alt="GIF not genereated" height="200" width="250">
+								<a href="http://${current.host}:1338/download/${current.name}/wrfoutput/Precip_total.gif">Download</a>
+								<!-- <a onclick="myFunction( '${current.host}', '${current.name}' )" href="#">Output</a> -->
 							</c:if>
 						</td>
 					</tr>
@@ -93,6 +94,11 @@
 	             url: "http://localhost:9090/apigateway/api/output",
 	             success: function(data){        
 	                alert(data);
+	                window.open(data);
+	                <img src="'+ data +'"alt="Smiley face" height="200" width="250">
+	                
+	                
+	                
 	             }
 	         });
 		    

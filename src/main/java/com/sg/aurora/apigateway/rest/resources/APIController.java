@@ -180,9 +180,11 @@ public class APIController {
 	  System.out.println("TaskId: "+ taskId);
 	  System.out.println("http://"+host+":1338/download/"+taskId+"/wrfoutput/Precip_total.gif");
 	  URL website = new URL("http://"+host+":1338/download/"+taskId+"/wrfoutput/Precip_total.gif");
+	  String home = System.getProperty("user.home");
+	  home+="\\Downloads\\Precip_total.gif";
 	  try {
 		ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-		FileOutputStream fos = new FileOutputStream("Precip_total.gif");
+		FileOutputStream fos = new FileOutputStream(home);
 		fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
 		System.out.println("Working Directory = " +
 	              System.getProperty("user.dir"));
@@ -193,10 +195,13 @@ public class APIController {
 	}
 	
 	
+	  
+	  
+	  
 	//rb.entity("hello world");
 	
 	  //Response.seeOther(targetURIForRedirection).build();
-	return System.getProperty("user.dir");
+	return home;
 	
   }
 }
