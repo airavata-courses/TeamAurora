@@ -142,9 +142,9 @@ public class ForecastTriggerController {
 		taskConfig.setJob(jobKey);
 		taskConfig.setOwner(owner);
 		taskConfig.setIsService(false); 
-		taskConfig.setNumCpus(0.1); 
-		taskConfig.setRamMb(1);
-		taskConfig.setDiskMb(8); 
+		taskConfig.setNumCpus(0.25); 
+		taskConfig.setRamMb(200);
+		taskConfig.setDiskMb(500); 
 		taskConfig.setPriority(0);
 		taskConfig.setMaxTaskFailures(1);
 		
@@ -167,16 +167,19 @@ public class ForecastTriggerController {
 		
 		taskConfig.setResources(resourceSet);
 		
-		ProcessBean proc1 = new ProcessBean("process_1", "docker ps", false);
-		ProcessBean proc2 = new ProcessBean("process_2", "docker ps", false);
+		//ProcessBean proc1 = new ProcessBean("process_1", "docker ps", false);
+		//ProcessBean proc2 = new ProcessBean("process_2", "docker ps", false);
 		
-		//ProcessBean proc1 = new ProcessBean("process_1", "docker run -i --volumes-from wpsgeog --volumes-from wrfinputsandy -v ~/wrfoutput:/wrfoutput --name ncarwrfsandy bigwxwrf/ncar-wrf /wrf/run-wrf", false);
-		//ProcessBean proc2 = new ProcessBean("process_2", "docker run -i --rm=true -v ~/wrfoutput:/wrfoutput --name postproc bigwxwrf/ncar-ncl", false);
+		
+		String containerName = "aurora-ncarwrfsandy-" + requestId + Math.random() ;
+		
+		ProcessBean proc1 = new ProcessBean("process_1", "docker run -i --volumes-from wpsgeog --volumes-from wrfinputsandy -v ~/wrfoutput:/wrfoutput --name "+ containerName + " bigwxwrf/ncar-wrf /wrf/run-wrf", false);
+		ProcessBean proc2 = new ProcessBean("process_2", "docker run -i --rm=true -v ~/wrfoutput:/wrfoutput --name postproc bigwxwrf/ncar-ncl", false);
 		Set<ProcessBean> processes = new HashSet<ProcessBean>();
 		processes.add(proc1);
 		processes.add(proc2);
 		
-		ResourceBean resources = new ResourceBean(0.1, 8, 1);
+		ResourceBean resources = new ResourceBean(0.25, 500, 200);
 		
 		
 		TaskConfigBean taskConfigBean = new TaskConfigBean("task_aurora_" + requestId, processes, resources);
@@ -193,6 +196,9 @@ public class ForecastTriggerController {
 		
 		
 		ResponseBean response = null;
+		
+		
+		//client.getAuroraSchedulerManagerClient().
 		
 		Response createJobResponse = client.getAuroraSchedulerManagerClient().createJob(jobConfig);
 		response = AuroraThriftClientUtil.getResponseBean(createJobResponse, ResponseResultType.CREATE_JOB);
