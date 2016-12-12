@@ -56,7 +56,7 @@
 					<!--  <tr bgcolor="#DEB887">-->
 					<tr align="center">
 						<td>${current.name} </td>
-						<td>${current.status}  "http://${current.host}:1338/download/${current.name}/wrfoutput/Precip_total.gif" </td>
+						<td>${current.status} </td>
 						
 						<td> 
 							<c:if test="${current.status == 'FINISHED'}">
