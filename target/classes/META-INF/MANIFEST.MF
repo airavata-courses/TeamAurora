@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Built-By: Srikanth
+Build-Jdk: 1.8.0_111
+Class-Path: junit-4.4.jar javax.servlet-api-3.1.0.jar postgresql-9.1-9
+ 01-1.jdbc4.jar jackson-databind-2.6.3.jar jackson-annotations-2.6.0.j
+ ar jackson-core-2.6.3.jar amqp-client-3.6.5.jar json-20160810.jar com
+ mon.utils-2.0.jar libthrift-0.9.3.jar slf4j-api-1.7.12.jar httpclient
+ -4.4.1.jar commons-logging-1.2.jar commons-codec-1.9.jar httpcore-4.4
+ .1.jar commons-io-2.5.jar
+Main-Class: com.sg.aurora.dataingestorworker.rest.resources.ForecastTr
+ iggerController
+Created-By: Maven Integration for Eclipse
+
