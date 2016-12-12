@@ -167,14 +167,14 @@ public class ForecastTriggerController {
 		
 		taskConfig.setResources(resourceSet);
 		
-		ProcessBean proc1 = new ProcessBean("process_1", "echo 'Hello World'", false);
-		ProcessBean proc2 = new ProcessBean("process_2", "echo 'Hello World'", false);
+		//ProcessBean proc1 = new ProcessBean("process_1", "echo 'Hello World'", false);
+		//ProcessBean proc2 = new ProcessBean("process_2", "echo 'Hello World'", false);
 		
 		
 		String containerName = "aurora-ncarwrfsandy-" + requestId + Math.random() ;
 		
-		//ProcessBean proc1 = new ProcessBean("process_1", "docker run -i --volumes-from wpsgeog --volumes-from wrfinputsandy -v ~/wrfoutput:/wrfoutput --name "+ containerName + " bigwxwrf/ncar-wrf /wrf/run-wrf", false);
-		//ProcessBean proc2 = new ProcessBean("process_2", "docker run -i --rm=true -v ~/wrfoutput:/wrfoutput --name postproc bigwxwrf/ncar-ncl", false);
+		ProcessBean proc1 = new ProcessBean("process_1", "docker run -i --volumes-from wpsgeog --volumes-from wrfinputsandy -v ~/wrfoutput:/wrfoutput --name "+ containerName + " bigwxwrf/ncar-wrf /wrf/run-wrf", false);
+		ProcessBean proc2 = new ProcessBean("process_2", "docker run -i --rm=true -v ~/wrfoutput:/wrfoutput --name postproc bigwxwrf/ncar-ncl", false);
 		Set<ProcessBean> processes = new HashSet<ProcessBean>();
 		processes.add(proc1);
 		processes.add(proc2);
