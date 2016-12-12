@@ -1,6 +1,5 @@
 echo 'Setting environment'
 export JAVA_HOME=/usr/lib/jvm/java
-export PATH=$JAVA_HOME/jre/bin:$PATH
 echo 'Checking if MAVEN is installed'
 mvn --version
 if [ "$?" -ne 0 ]; then
@@ -28,5 +27,3 @@ fi
 
 docker ps -a | grep 'forecasttriggerworker' | awk '{print $1}' | xargs --no-run-if-empty docker stop
 docker ps -a | grep 'forecasttriggerworker' | awk '{print $1}' | xargs --no-run-if-empty docker rm
-
-echo "End of script."
