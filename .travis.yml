@@ -36,7 +36,7 @@ deploy:
     key: SGA_TeamAurora_StormDetector.zip
     bundle_type: zip
     application: TeamAurora
-    deployment_group: TeamAurora
+    deployment_group: TeamAurora_Services
     region: us-west-2
     on:
       branch: feature-StormDetector
