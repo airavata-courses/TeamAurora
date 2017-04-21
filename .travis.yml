@@ -32,8 +32,8 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: teamaurorabucket
-    key: build/libs/storm_detection/SGA_TeamAurora_StormDetector.zip
-    #key: SGA_TeamAurora_StormDetector.zip
+    #key: build/libs/storm_detection/SGA_TeamAurora_StormDetector.zip
+    key: SGA_TeamAurora_StormDetector.zip
     bundle_type: zip
     application: TeamAurora
     deployment_group: TeamAurora
