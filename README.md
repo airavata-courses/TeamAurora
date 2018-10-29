@@ -1,6 +1,6 @@
 # Team Aurora
 
-This is an an open source project that uses NEXRAD for Weather Prediction.
+This is an open source project that uses NEXRAD for Weather Prediction.
 
 # Team Members: 
 
